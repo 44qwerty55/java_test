@@ -3,12 +3,13 @@ package ru.stqa.java_test.sandbox;
 public class Test {
 
   public static void main(String[] args) {
+   //вызов текстовой функции (вывод на экран т.к. в функции уже есть метод вывода)
     testtTekst("  qwerty ");
     double l = 4;
     double a = 7;
     double b = 8;
 
-
+//вызов числовой функции (вывод на экран)
     System.out.println(" s_1 " + testDoubl(l));
     System.out.println(" s_2 " + testDoubl(a, b));
   }
