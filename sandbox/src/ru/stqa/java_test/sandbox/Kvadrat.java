@@ -6,4 +6,8 @@ public class Kvadrat {
   public Kvadrat(double l) {
     this.l = l;
   }
+
+  public  double testDoubl() {
+    return this.l * this.l;
+  }
 }

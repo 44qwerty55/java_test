@@ -8,4 +8,8 @@ public class Priamougoknik {
     this.b = b;
     this.a = a;
   }
+  public double testDoubl2() {
+    return this.a * this.b;
+  }
+
 }

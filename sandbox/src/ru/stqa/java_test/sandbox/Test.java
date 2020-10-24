@@ -12,19 +12,11 @@ public class Test {
     // p.b = 8;
 
 //вызов числовой функции (вывод на экран)
-    System.out.println(" s_1 " + k.l + " umnogenie " + testDoubl(k));
-    System.out.println(" s_2 " + p.a + " and " + p.b + " = " + testDoubl2(p));
+    System.out.println(" s_1 " + k.l + " umnogenie " + k.testDoubl());
+    System.out.println(" s_2 " + p.a + " and " + p.b + " = " + p.testDoubl2());
   }
-
-
-  public static double testDoubl(Kvadrat k) {
-    return k.l * k.l;
-  }
-
-  public static double testDoubl2(Priamougoknik p) {
-    return p.a * p.b;
-  }
-
+  
+//текстовая функция
   public static void testtTekst(String tekst) {
     System.out.println(" test !!!!!!!!!!!!!" + tekst + " testttt!!!!!!!!!!");
   }
