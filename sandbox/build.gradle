@@ -11,5 +11,5 @@ plugins {
    id 'application'
 }
 application {
-     mainClass = 'Test'
+     mainClass = 'ru.stqa.java_test.sandbox.Test'
 }

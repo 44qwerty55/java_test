@@ -1,3 +1,4 @@
+package ru.stqa.java_test.sandbox;
 
 public class Test {
 
