@@ -11,5 +11,12 @@ plugins {
    id 'application'
 }
 application {
-     mainClass = 'ru.stqa.java_test.sandbox.Test'
+     mainClass = 'main.java.pak.Test'
+}
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.testng:testng:6.9.13.6'
 }

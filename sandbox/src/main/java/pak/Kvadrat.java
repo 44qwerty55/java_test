@@ -1,4 +1,4 @@
-package ru.stqa.java_test.sandbox;
+package main.java.pak;
 
 public class Kvadrat {
   public double l;
