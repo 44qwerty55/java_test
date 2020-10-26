@@ -1,6 +1,9 @@
 package main.java.pak;
-
-public class Test {
+import main.java.pak.Kvadrat;
+import main.java.pak.Priamougoknik;
+import main.java.pak.Point;
+public class
+Test {
 
   public static void main(String[] args) {
     //вызов текстовой функции (вывод на экран т.к. в функции уже есть метод вывода)
@@ -26,9 +29,12 @@ public class Test {
             "  расстояние " + String.format( "%.2f" , distance(x1, x2, y1, y2)));
     System.out.println(" ------------  второе задание класс(метод) ----------");
 
-    Point po = new Point(1,3,2,6);
-    System.out.println(" расстояние между точками  "  + " точка А " + po.x1 + "-" + po.y1 + " точка Б " + po.x2 + "-" + po.y2 +
-            "  расстояние " + String.format( "%.2f" , po.distanceMetod()));
+
+
+    Point po = new Point(1,2);
+    Point po2 = new Point(3,6);
+    System.out.println(" расстояние между точками  "  + " точка А " + po.x + "-" + po.y + " точка Б " + po2.x + "-" + po2.y +
+            "  расстояние " + String.format( "%.2f" , po.distanceMetod(po2)));
 
 
   }
