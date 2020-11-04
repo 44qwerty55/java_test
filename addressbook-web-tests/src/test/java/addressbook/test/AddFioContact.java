@@ -1,11 +1,11 @@
 package addressbook.test;
 
-public class AddFioCotact {
+public class AddFioContact {
   private final String firstname;
   private final String middlename;
   private final String lastname;
 
-  public AddFioCotact(String firstname, String middlename, String lastname) {
+  public AddFioContact(String firstname, String middlename, String lastname) {
     this.firstname = firstname;
     this.middlename = middlename;
     this.lastname = lastname;

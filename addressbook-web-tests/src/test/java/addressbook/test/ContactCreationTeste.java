@@ -3,7 +3,6 @@ package addressbook.test;
 import java.util.concurrent.TimeUnit;
 
 import org.testng.annotations.*;
-
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
@@ -35,7 +34,7 @@ public class ContactCreationTeste {
 
   public void contactCreationTeste() throws Exception {
     gotoAddContactPage();
-    addFIO(new AddFioCotact("test", "test", "test"));
+    addFIO(new AddFioContact("test", "test", "test"));
     addCompany();
     addEmail();
     addBirthday();
@@ -71,16 +70,16 @@ public class ContactCreationTeste {
     wd.findElement(By.name("company")).sendKeys("company test");
   }
 
-  private void addFIO(AddFioCotact addFioCotact) {
+  private void addFIO(AddFioContact addFioContact) {
     wd.findElement(By.name("firstname")).click();
     wd.findElement(By.name("firstname")).clear();
-    wd.findElement(By.name("firstname")).sendKeys(addFioCotact.getFirstname());
+    wd.findElement(By.name("firstname")).sendKeys(addFioContact.getFirstname());
     wd.findElement(By.name("middlename")).click();
     wd.findElement(By.name("middlename")).clear();
-    wd.findElement(By.name("middlename")).sendKeys(addFioCotact.getMiddlename());
+    wd.findElement(By.name("middlename")).sendKeys(addFioContact.getMiddlename());
     wd.findElement(By.name("lastname")).click();
     wd.findElement(By.name("lastname")).clear();
-    wd.findElement(By.name("lastname")).sendKeys(addFioCotact.getLastname());
+    wd.findElement(By.name("lastname")).sendKeys(addFioContact.getLastname());
   }
 
   private void gotoAddContactPage() {
