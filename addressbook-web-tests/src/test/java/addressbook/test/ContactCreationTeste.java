@@ -1,5 +1,6 @@
 package addressbook.test;
 
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import org.testng.annotations.*;
@@ -34,9 +35,9 @@ public class ContactCreationTeste {
   public void contactCreationTeste() throws Exception {
     gotoAddContactPage();
     addFIO(new AddFioContact("test", "test", "test"));
-    addCompany();
-    addEmail();
-    addBirthday();
+    addCompany("test company2");
+    addEmail("test@test.ru");
+    addBirthday("8","July","1990");
     submitNewContact();
     returnToHomePage();
   }
@@ -49,28 +50,40 @@ public class ContactCreationTeste {
     wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
   }
 
-  private void addBirthday() {
-    wd.findElement(By.name("bday")).click();
-    new Select(wd.findElement(By.name("bday"))).selectByVisibleText("6");
-    wd.findElement(By.xpath("//option[@value='6']")).click();
-    wd.findElement(By.name("bmonth")).click();
-    new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText("July");
-    wd.findElement(By.xpath("//option[@value='July']")).click();
-    wd.findElement(By.name("byear")).click();
-    wd.findElement(By.name("byear")).clear();
-    wd.findElement(By.name("byear")).sendKeys("1990");
+   private void addBirthday(String bday, String bmonth, String byear) {
+   wd.findElement(By.name("bday")).click();
+     new Select(wd.findElement(By.name("bday"))).selectByVisibleText(bday);
+     wd.findElement(By.name("bday")).click();
+     wd.findElement(By.name("bmonth")).click();
+     new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText(bmonth);
+     wd.findElement(By.name("bmonth")).click();
+     wd.findElement(By.name("byear")).click();
+     wd.findElement(By.name("byear")).clear();
+     wd.findElement(By.name("byear")).sendKeys(byear);
   }
 
-  private void addEmail() {
+ // private void addBirthday() {
+  //  wd.findElement(By.name("bday")).click();
+ //   new Select(wd.findElement(By.name("bday"))).selectByVisibleText("6");
+ //   wd.findElement(By.xpath("//option[@value='6']")).click();
+ //   wd.findElement(By.name("bmonth")).click();
+ //   new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText("July");
+ //   wd.findElement(By.xpath("//option[@value='July']")).click();
+ //   wd.findElement(By.name("byear")).click();
+ //   wd.findElement(By.name("byear")).clear();
+ //   wd.findElement(By.name("byear")).sendKeys("1990");
+//  }
+
+  private void addEmail(String email) {
     wd.findElement(By.name("email")).click();
     wd.findElement(By.name("email")).clear();
-    wd.findElement(By.name("email")).sendKeys("test@test.ru");
+    wd.findElement(By.name("email")).sendKeys(email);
   }
 
-  private void addCompany() {
+  private void addCompany(String company) {
     wd.findElement(By.name("company")).click();
     wd.findElement(By.name("company")).clear();
-    wd.findElement(By.name("company")).sendKeys("company test");
+    wd.findElement(By.name("company")).sendKeys(company);
   }
 
   private void addFIO(AddFioContact addFioContact) {
