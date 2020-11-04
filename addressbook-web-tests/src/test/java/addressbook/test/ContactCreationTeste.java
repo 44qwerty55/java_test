@@ -16,7 +16,6 @@ public class ContactCreationTeste {
     wd = new FirefoxDriver();
     wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     wd.get("http://localhost/addressbook/");
-    // login
     login(new Login("admin", "secret"));
   }
 
@@ -39,11 +38,15 @@ public class ContactCreationTeste {
     addEmail();
     addBirthday();
     submitNewContact();
+    returnToHomePage();
+  }
 
+  private void returnToHomePage() {
+    wd.findElement(By.linkText("home page")).click();
   }
 
   private void submitNewContact() {
-    wd.findElement(By.name("new_group")).click();
+    wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
   }
 
   private void addBirthday() {
