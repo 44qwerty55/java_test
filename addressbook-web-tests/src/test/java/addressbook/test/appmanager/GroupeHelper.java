@@ -4,43 +4,36 @@ import addressbook.test.model.GropeData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class GroupeHelper {
-  private WebDriver wd;
+public class GroupeHelper extends HelperBase {
 
   public GroupeHelper(WebDriver wd) {
-    this.wd =wd;
+    super(wd);
   }
 
   public void returnToGroupePage() {
-    wd.findElement(By.linkText("Logout")).click();
+    click(By.linkText("Logout"));
   }
 
   public void submitGroupeCreation() {
-    wd.findElement(By.name("submit")).click();
-    wd.findElement(By.linkText("group page")).click();
+    click(By.name("submit"));
+    //  wd.findElement(By.linkText("group page")).click();
   }
 
   public void fillGroupeForm(GropeData gropeData) {
-    wd.findElement(By.name("group_name")).click();
-    wd.findElement(By.name("group_name")).clear();
-    wd.findElement(By.name("group_name")).sendKeys(gropeData.getName());
-    wd.findElement(By.name("group_header")).click();
-    wd.findElement(By.name("group_header")).clear();
-    wd.findElement(By.name("group_header")).sendKeys(gropeData.getHeader());
-    wd.findElement(By.name("group_footer")).click();
-    wd.findElement(By.name("group_footer")).clear();
-    wd.findElement(By.name("group_footer")).sendKeys(gropeData.getFooter());
+    type(By.name("group_name"), gropeData.getName());
+    type(By.name("group_header"), gropeData.getHeader());
+    type(By.name("group_footer"), gropeData.getFooter());
   }
 
   public void initGroupeCreation() {
-    wd.findElement(By.name("new")).click();
+    click(By.name("new"));
   }
 
   public void deleteSelectedGroupse() {
-    wd.findElement(By.name("delete")).click();
+    click(By.name("delete"));
   }
 
   public void selectGroupe() {
-    wd.findElement(By.name("selected[]")).click();
+    click(By.name("selected[]"));
   }
 }
