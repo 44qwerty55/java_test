@@ -1,6 +1,6 @@
-package addressbook.test;
+package addressbook.test.model;
 
-public class AddContact {
+public class AddContact  {
   private final String firstname;
   private final String middlename;
   private final String lastname;
