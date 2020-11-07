@@ -1,6 +1,6 @@
 package addressbook.test.tests;
 
-import model.GropeData;
+import addressbook.test.model.GropeData;
 import org.testng.annotations.*;
 
 public class GroopCreationTeste extends TestBase {
@@ -8,11 +8,11 @@ public class GroopCreationTeste extends TestBase {
   @Test
   public void testGroopCreation() throws Exception {
 
-    app.gotoGroupPage();
-    app.initGroupeCreation();
-    app.fillGroupeForm(new GropeData("name", "header", "footer"));
-    app.submitGroupeCreation();
-    app.returnToGroupePage();
+    app.getNavigationHelper().gotoGroupPage();
+    app.getGroupeHelper().initGroupeCreation();
+    app.getGroupeHelper().fillGroupeForm(new GropeData("name", "header", "footer"));
+    app.getGroupeHelper().submitGroupeCreation();
+    app.getGroupeHelper().returnToGroupePage();
   }
 
 

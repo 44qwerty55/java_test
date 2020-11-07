@@ -2,7 +2,7 @@ package addressbook.test;
 
 import java.util.concurrent.TimeUnit;
 
-import model.Login;
+import addressbook.test.model.Login;
 import org.testng.annotations.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
