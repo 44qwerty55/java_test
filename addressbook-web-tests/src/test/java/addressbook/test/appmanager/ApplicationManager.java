@@ -1,20 +1,19 @@
-package addressbook.test;
+package addressbook.test.appmanager;
 
+import model.GropeData;
+import model.Login;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
-public class TestBase {
+public class ApplicationManager {
   private WebDriver wd;
 
-  @BeforeMethod(alwaysRun = true)
-  public void setUp() throws Exception {
+  public void init() {
     wd = new FirefoxDriver();
     wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     wd.get("http://localhost/addressbook/");
@@ -32,16 +31,16 @@ public class TestBase {
     wd.findElement(By.xpath("//input[@value='Login']")).click();
   }
 
-  protected void returnToGroupePage() {
+  public void returnToGroupePage() {
     wd.findElement(By.linkText("Logout")).click();
   }
 
-  protected void submitGroupeCreation() {
+  public void submitGroupeCreation() {
     wd.findElement(By.name("submit")).click();
     wd.findElement(By.linkText("group page")).click();
   }
 
-  protected void fillGroupeForm(GropeData gropeData) {
+  public void fillGroupeForm(GropeData gropeData) {
     wd.findElement(By.name("group_name")).click();
     wd.findElement(By.name("group_name")).clear();
     wd.findElement(By.name("group_name")).sendKeys(gropeData.getName());
@@ -53,18 +52,16 @@ public class TestBase {
     wd.findElement(By.name("group_footer")).sendKeys(gropeData.getFooter());
   }
 
-  protected void initGroupeCreation() {
+  public void initGroupeCreation() {
     wd.findElement(By.name("new")).click();
   }
 
-  protected void gotoGroupPage() {
+  public void gotoGroupPage() {
     wd.findElement(By.linkText("groups")).click();
   }
 
-  @AfterMethod(alwaysRun = true)
-  public void tearDown() throws Exception {
+  public void stop() {
     wd.quit();
-
   }
 
   private boolean isElementPresent(By by) {
@@ -85,11 +82,11 @@ public class TestBase {
     }
   }
 
-  protected void deleteSelectedGroupse() {
+  public void deleteSelectedGroupse() {
     wd.findElement(By.name("delete")).click();
   }
 
-  protected void selectGroupe() {
+  public void selectGroupe() {
     wd.findElement(By.name("selected[]")).click();
   }
 }

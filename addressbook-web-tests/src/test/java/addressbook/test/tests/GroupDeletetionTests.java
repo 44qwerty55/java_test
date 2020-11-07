@@ -1,4 +1,4 @@
-package addressbook.test;
+package addressbook.test.tests;
 
 import org.testng.annotations.*;
 import org.openqa.selenium.*;
@@ -10,10 +10,10 @@ public class GroupDeletetionTests extends TestBase {
 
   @Test
   public void testGroupDeletetion() throws Exception {
-    gotoGroupPage();
-    selectGroupe();
-    deleteSelectedGroupse();
-    returnToGroupePage();
+    app.gotoGroupPage();
+    app.selectGroupe();
+    app.deleteSelectedGroupse();
+    app.returnToGroupePage();
   }
 
 

@@ -1,4 +1,4 @@
-package addressbook.test;
+package model;
 
 public class Login {
   private final String username;
