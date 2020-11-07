@@ -11,39 +11,25 @@ public class ContactHelper extends HelperBase {
   }
 
   public void returnToHomePage() {
-    wd.findElement(By.linkText("home page")).click();
+    click(By.linkText("home page"));
   }
 
   public void submitNewContact() {
-    wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();}
+    click(By.xpath("(//input[@name='submit'])[2]"));
+  //  wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
+    }
 
   public void addContactForm(AddContact addContact) {
-    wd.findElement(By.name("firstname")).click();
-    wd.findElement(By.name("firstname")).clear();
-    wd.findElement(By.name("firstname")).sendKeys(addContact.getFirstname());
-    wd.findElement(By.name("middlename")).click();
-    wd.findElement(By.name("middlename")).clear();
-    wd.findElement(By.name("middlename")).sendKeys(addContact.getMiddlename());
-    wd.findElement(By.name("lastname")).click();
-    wd.findElement(By.name("lastname")).clear();
-    wd.findElement(By.name("lastname")).sendKeys(addContact.getLastname());
-    wd.findElement(By.name("company")).click();
-    wd.findElement(By.name("company")).clear();
-    wd.findElement(By.name("company")).sendKeys(addContact.getCompany());
-    wd.findElement(By.name("email")).click();
-    wd.findElement(By.name("email")).clear();
-    wd.findElement(By.name("email")).sendKeys(addContact.getEmail());
-    wd.findElement(By.name("bday")).click();
-    new Select(wd.findElement(By.name("bday"))).selectByVisibleText(addContact.getBday());
-    wd.findElement(By.name("bday")).click();
-    wd.findElement(By.name("bmonth")).click();
-    new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText(addContact.getBmonth());
-    wd.findElement(By.name("bmonth")).click();
-    wd.findElement(By.name("byear")).click();
-    wd.findElement(By.name("byear")).clear();
-    wd.findElement(By.name("byear")).sendKeys(addContact.getByear());
-    wd.findElement(By.name("new_group")).click();
-    new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(addContact.getNew_group());
+    type(By.name("firstname"),addContact.getFirstname());
+    type(By.name("middlename"),addContact.getMiddlename());
+    type(By.name("lastname"),addContact.getLastname());
+    type(By.name("company"),addContact.getCompany());
+    type(By.name("email"),addContact.getEmail());
+    select(By.name("bday"),addContact.getBday() );
+    select(By.name("bmonth"),addContact.getBmonth() );
+    type(By.name("byear"),addContact.getByear());
+    select(By.name("new_group"),addContact.getNew_group() );
+
   }
 
 }
