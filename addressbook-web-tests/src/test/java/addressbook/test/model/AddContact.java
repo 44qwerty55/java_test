@@ -9,9 +9,10 @@ public class AddContact  {
   private final String bday;
   private final String bmonth;
   private final String byear;
+  private final String new_group;
   //private final String new_group;
 
-  public AddContact(String firstname, String middlename, String lastname, String company, String email, String bday, String bmonth, String byear) {
+  public AddContact(String firstname, String middlename, String lastname, String company, String email, String bday, String bmonth, String byear, String new_group) {
     this.firstname = firstname;
     this.middlename = middlename;
     this.lastname = lastname;
@@ -20,7 +21,7 @@ public class AddContact  {
     this.bday = bday;
     this.bmonth = bmonth;
     this.byear = byear;
-   // this.new_group = new_group;
+   this.new_group = new_group;
   }
 
   public String getFirstname() {
@@ -55,5 +56,5 @@ public class AddContact  {
     return byear;
   }
 
-  //public String getNew_group() {    return new_group;  }
+  public String getNew_group() {    return new_group;  }
 }

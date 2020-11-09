@@ -1,9 +1,6 @@
 package addressbook.test.appmanager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
 
 public class HelperBase {
@@ -21,14 +18,14 @@ public class HelperBase {
 
   protected void type(By locator, String text) {
     click(locator);
-    if (text != null) {
-      String existingText = wd.findElement(locator).getAttribute("vale");
-      if (!text.equals(existingText)) {
+  //  if (text != null) {
+  //    String existingText = wd.findElement(locator).getAttribute("vale");
+   //   if (!text.equals(existingText)) {
         wd.findElement(locator).clear();
         wd.findElement(locator).sendKeys(text);
       }
-    }
-  }
+//    }
+//  }
 
   protected void select(By locator, String text) {
     click(locator);
@@ -45,4 +42,12 @@ public class HelperBase {
   }
 
 
+  protected boolean isElementPresent(By locator) {
+    try {
+      wd.findElement(locator);
+      return true;
+    } catch (NoSuchElementException ex) {
+      return false;
+    }
+  }
 }

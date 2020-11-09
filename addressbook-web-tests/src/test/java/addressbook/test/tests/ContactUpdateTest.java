@@ -11,7 +11,7 @@ public class ContactUpdateTest extends TestBase {
     app.getNavigationHelper().gotoContactPage();
     app.getContactHelper().selectContact();
     app.getContactHelper().editSelectedContact();
-    app.getContactHelper().addContactForm(new AddContact("test_update", "test_update", "test_update", "test_update company3", "test@test.ru", "8", "July", "1990"));
+    app.getContactHelper().addContactForm(new AddContact("test_update", "test_update", "test_update", "test_update company3", "test@test.ru", "8", "July", "1990", null) , false);
     app.getContactHelper().submiteUpdateContact();
     app.getContactHelper().returnToHomePage();
 

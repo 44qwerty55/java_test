@@ -3,8 +3,10 @@ package addressbook.test.appmanager;
 import addressbook.test.model.AddContact;
 import addressbook.test.model.AddContactGroupe;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 public class ContactHelper extends HelperBase {
   public ContactHelper(WebDriver wd) {
@@ -20,7 +22,7 @@ public class ContactHelper extends HelperBase {
     //  wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
   }
 
-  public void addContactForm(AddContact addContact) {
+  public void addContactForm(AddContact addContact , boolean creation) {
     type(By.name("firstname"), addContact.getFirstname());
     type(By.name("middlename"), addContact.getMiddlename());
     type(By.name("lastname"), addContact.getLastname());
@@ -29,7 +31,14 @@ public class ContactHelper extends HelperBase {
     select(By.name("bday"), addContact.getBday());
     select(By.name("bmonth"), addContact.getBmonth());
     type(By.name("byear"), addContact.getByear());
-    //  select(By.name("new_group"), addContact.getNew_group());
+
+
+    if (creation) {
+      select(By.name("new_group"), addContact.getNew_group());
+    } else {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
+    }
+  //  select(By.name("new_group"), addContact.getNew_group());
 
   }
 
