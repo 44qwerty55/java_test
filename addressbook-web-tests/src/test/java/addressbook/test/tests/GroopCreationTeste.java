@@ -10,7 +10,7 @@ public class GroopCreationTeste extends TestBase {
 
     app.getNavigationHelper().gotoGroupPage();
     app.getGroupeHelper().initGroupeCreation();
-    app.getGroupeHelper().fillGroupeForm(new GropeData("name", "header", "footer"));
+    app.getGroupeHelper().fillGroupeForm(new GropeData("name1", null, null));
     app.getGroupeHelper().submitGroupeCreation();
     app.getGroupeHelper().returnToGroupePage();
   }
