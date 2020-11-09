@@ -18,14 +18,14 @@ public class HelperBase {
 
   protected void type(By locator, String text) {
     click(locator);
-  //  if (text != null) {
-  //    String existingText = wd.findElement(locator).getAttribute("vale");
-   //   if (!text.equals(existingText)) {
+   if (text != null) {
+      String existingText = wd.findElement(locator).getAttribute("vale");
+      if (!text.equals(existingText)) {
         wd.findElement(locator).clear();
         wd.findElement(locator).sendKeys(text);
       }
-//    }
-//  }
+    }
+  }
 
   protected void select(By locator, String text) {
     click(locator);
