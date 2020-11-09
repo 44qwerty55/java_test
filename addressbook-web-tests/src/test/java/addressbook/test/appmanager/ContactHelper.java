@@ -68,4 +68,17 @@ public class ContactHelper extends HelperBase {
     //  driver.findElement(By.xpath("(//input[@name='update'])[2]")).click();
     click(By.name("update"));
   }
+
+  public void createContact(AddContact addContact, boolean b) {
+   // app.getNavigationHelper().gotoAddContactPage();
+    addContactForm((addContact), true);
+    //  app.getContactHelper().addContactFormGroupe(new AddContactGroupe("test_mod"));
+    submitNewContact();
+    returnToHomePage();
+
+  }
+
+  public boolean isThereAcontact() {
+   return isElementPresent(By.name("selected[]"));
+  }
 }

@@ -9,6 +9,10 @@ public class ContactUpdateTest extends TestBase {
   public void testContactUpdate() throws Exception {
 
     app.getNavigationHelper().gotoContactPage();
+    if (! app.getContactHelper().isThereAcontact()) {
+      app.getNavigationHelper().gotoAddContactPage();
+      app.getContactHelper().createContact(new AddContact("test9", "test1", "test1", "test company3", "test@test.ru", "8", "July", "1990","test_mod"), true);
+    }
     app.getContactHelper().selectContact();
     app.getContactHelper().editSelectedContact();
     app.getContactHelper().addContactForm(new AddContact("test_update", "test_update", "test_update", "test_update company3", "test@test.ru", "8", "July", "1990", null) , false);
