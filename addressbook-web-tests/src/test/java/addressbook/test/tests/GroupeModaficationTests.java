@@ -22,7 +22,6 @@ public class GroupeModaficationTests extends TestBase {
     app.getNavigationHelper().gotoGroupPage();
     int after = app.getGroupeHelper().getGroupCount();
     Assert.assertEquals(after, before );
-
   }
 
 }
