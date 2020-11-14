@@ -4,6 +4,8 @@ import addressbook.test.model.GropeData;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.util.List;
+
 public class GroopCreationTeste extends TestBase {
 
   @Test
@@ -12,15 +14,17 @@ public class GroopCreationTeste extends TestBase {
 
 
     app.getNavigationHelper().gotoGroupPage();
-    int before = app.getGroupeHelper().getGroupCount();
+    List<GropeData> before = app.getGroupeHelper().getGroupeList();
+  //  int before = app.getGroupeHelper().getGroupCount();
     app.getGroupeHelper().initGroupeCreation();
     app.getGroupeHelper().fillGroupeForm(new GropeData("name1", null, null));
     app.getGroupeHelper().submitGroupeCreation();
     app.getNavigationHelper().gotoGroupPage();
-    int after = app.getGroupeHelper().getGroupCount();
+    List<GropeData> after = app.getGroupeHelper().getGroupeList();
+ //   int after = app.getGroupeHelper().getGroupCount();
  //   app.getGroupeHelper().returnToGroupePage();
 
-    Assert.assertEquals(after, before +1);
+    Assert.assertEquals(after.size(), before.size() +1);
   }
 
 

@@ -3,6 +3,10 @@ package addressbook.test.appmanager;
 import addressbook.test.model.GropeData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GroupeHelper extends HelperBase {
 
@@ -61,5 +65,17 @@ public class GroupeHelper extends HelperBase {
 
   public int getGroupCount() {
    return wd.findElements(By.name("selected[]")).size();
+  }
+
+  public List<GropeData> getGroupeList() {
+    List<GropeData> groups = new ArrayList<GropeData>();
+    List<WebElement>  elements = wd.findElements(By.cssSelector("span.group"));
+    for (WebElement element : elements){
+      String name = element.getText();
+      GropeData group = new GropeData(name , null , null);
+      groups.add(group);
+    }
+    return groups;
+
   }
 }
