@@ -33,8 +33,9 @@ public class GroupeHelper extends HelperBase {
     click(By.name("delete"));
   }
 
-  public void selectGroupe() {
-    click(By.name("selected[]"));
+  public void selectGroupe(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
+   // click(By.name("selected[]"));
   }
 
   public void initGropeModification() {

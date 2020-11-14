@@ -15,7 +15,7 @@ public class GroupeModaficationTests extends TestBase {
       before = before +1;
     }
     app.getNavigationHelper().gotoGroupPage();
-    app.getGroupeHelper().selectGroupe();
+    app.getGroupeHelper().selectGroupe(0);
     app.getGroupeHelper().initGropeModification();
     app.getGroupeHelper().fillGroupeForm(new GropeData("test_mod", "Test_mod", "Test_mod"));
     app.getGroupeHelper().submitGroupeModification();
