@@ -1,5 +1,7 @@
 package addressbook.test.model;
 
+import java.util.Objects;
+
 public class GropeData {
   private final String name;
   private final String header;
@@ -11,6 +13,8 @@ public class GropeData {
     this.footer = footer;
   }
 
+
+
   public String getName() {
     return name;
   }
@@ -21,5 +25,24 @@ public class GropeData {
 
   public String getFooter() {
     return footer;
+  }
+  @Override
+  public String toString() {
+    return "GropeData{" +
+            "name='" + name + '\'' +
+            '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    GropeData gropeData = (GropeData) o;
+    return Objects.equals(name, gropeData.name);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name);
   }
 }
