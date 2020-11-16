@@ -4,6 +4,7 @@ import addressbook.test.model.GropeData;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
@@ -35,7 +36,12 @@ for (GropeData g : after) {
     max = g.getId();
   }
 }
-group.setId(max);
+
+
+//   Comparator<? super GropeData> byId = (Comparator<GropeData>) (o1, o2) -> Integer.compare(o1.getId(), o2.getId());
+//  int max1 =  after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId();
+
+group.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
     before.add(group);
     Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after) );
   }
