@@ -3,13 +3,14 @@ package addressbook.test.model;
 import java.util.Objects;
 
 public class GropeData {
-  private final String id;
+
+  private  int id;
   private final String name;
   private final String header;
   private final String footer;
 
 
-  public GropeData(String id, String name, String header, String footer) {
+  public GropeData(int id, String name, String header, String footer) {
     this.id = id;
     this.name = name;
     this.header = header;
@@ -17,7 +18,7 @@ public class GropeData {
 
   }
   public GropeData( String name, String header, String footer) {
-    this.id = null;
+    this.id = 0;
     this.name = name;
     this.header = header;
     this.footer = footer;
@@ -25,7 +26,7 @@ public class GropeData {
   }
 
 
-  public String getId() {
+  public int getId() {
     return id;
   }
 
@@ -44,7 +45,7 @@ public class GropeData {
   @Override
   public String toString() {
     return "GropeData{" +
-            "id='" + id + '\'' +
+            "id=" + id +
             ", name='" + name + '\'' +
             '}';
   }
@@ -54,7 +55,7 @@ public class GropeData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     GropeData gropeData = (GropeData) o;
-    return Objects.equals(id, gropeData.id) &&
+    return id == gropeData.id &&
             Objects.equals(name, gropeData.name);
   }
 
@@ -62,4 +63,8 @@ public class GropeData {
   public int hashCode() {
     return Objects.hash(id, name);
   }
+  public void setId(int id) {
+    this.id = id;
+  }
+
 }
