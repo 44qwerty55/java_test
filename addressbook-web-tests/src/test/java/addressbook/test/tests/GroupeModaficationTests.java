@@ -4,24 +4,33 @@ import addressbook.test.model.GropeData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.HashSet;
+import java.util.List;
+
 public class GroupeModaficationTests extends TestBase {
 
   @Test
   public void testsgroupeModafication() {
     app.getNavigationHelper().gotoGroupPage();
-    int before = app.getGroupeHelper().getGroupCount();
+
     if (! app.getGroupeHelper().isThereAgroupe()) {
       app.getGroupeHelper().createGroup(new GropeData("name1", null, null));
-      before = before +1;
+    //  before = before +1;
     }
+    List<GropeData> before = app.getGroupeHelper().getGroupeList();
     app.getNavigationHelper().gotoGroupPage();
-    app.getGroupeHelper().selectGroupe(0);
+    app.getGroupeHelper().selectGroupe(before.size() -1);
     app.getGroupeHelper().initGropeModification();
-    app.getGroupeHelper().fillGroupeForm(new GropeData("test_mod", "Test_mod", "Test_mod"));
+    GropeData group = new GropeData(before.get(before.size() -1).getId(),"test_mod", "Test_mod", "Test_mod");
+    app.getGroupeHelper().fillGroupeForm(group);
     app.getGroupeHelper().submitGroupeModification();
     app.getNavigationHelper().gotoGroupPage();
-    int after = app.getGroupeHelper().getGroupCount();
-    Assert.assertEquals(after, before );
+    List<GropeData> after = app.getGroupeHelper().getGroupeList();
+    Assert.assertEquals(after.size(), before.size() );
+
+    before.remove(before.size() -1);
+    before.add(group);
+   Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after) );
   }
 
 }
