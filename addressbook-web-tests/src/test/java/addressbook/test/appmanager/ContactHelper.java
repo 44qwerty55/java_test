@@ -2,20 +2,23 @@ package addressbook.test.appmanager;
 
 import addressbook.test.model.AddContact;
 import addressbook.test.model.AddContactGroupe;
+import addressbook.test.model.GropeData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase {
   public ContactHelper(WebDriver wd) {
     super(wd);
   }
 
-  public void returnToHomePage() {
-    click(By.linkText("home page"));
-  }
+
 
   public void submitNewContact() {
     click(By.xpath("(//input[@name='submit'])[2]"));
@@ -52,7 +55,7 @@ public class ContactHelper extends HelperBase {
 
   }
 
-  public void selectContact() {
+  public void selectContact(int index) {
 
     //  click(By.id("4"));
     click(By.name("selected[]"));
@@ -74,11 +77,28 @@ public class ContactHelper extends HelperBase {
     addContactForm((addContact), true);
     //  app.getContactHelper().addContactFormGroupe(new AddContactGroupe("test_mod"));
     submitNewContact();
-    returnToHomePage();
+    //returnToHomePage();
 
   }
 
   public boolean isThereAcontact() {
    return isElementPresent(By.name("selected[]"));
+  }
+
+
+  public List<AddContact> getContactList() {
+List<AddContact> contacts = new ArrayList<AddContact>();
+List<WebElement>  elements = wd.findElements(By.xpath("//tr[@name='entry']" ));
+    for (WebElement element : elements){
+
+      String lastname = element.findElement(By.xpath("//td[2]")).getText();
+      String firstname = element.findElement(By.xpath("//td[3]")).getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      AddContact contact = new AddContact(id, firstname,lastname);
+      //AddContact contact = new AddContact(firstname, null , lastname, null,null,null,null,null,null);
+      contacts.add(contact);
+    }
+return contacts;
+
   }
 }
