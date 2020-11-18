@@ -51,20 +51,24 @@ public class ContactHelper extends HelperBase {
 
   public void deleteContact() {
     click(By.xpath("//input[@value='Delete']"));
+   // wd.switchTo().alert().accept();
+   }
+  public void allertWindow() {
     wd.switchTo().alert().accept();
-
   }
 
   public void selectContact(int index) {
 
     //  click(By.id("4"));
-    click(By.name("selected[]"));
+    wd.findElements(By.name("selected[]")).get(index).click();
+   // click(By.name("selected[]"));
     // click(By.id("MassCB"));
   }
 
-  public void editSelectedContact() {
-    click(By.xpath("//img[@alt='Edit']"));
-    // driver.findElement(By.xpath("//img[@alt='Edit']")).click();
+  public void editContact(int index) {
+    wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
+  //  wd.findElements(By.name("//img[@alt='Edit']")).get(index).click();
+    // click(By.xpath("//img[@alt='Edit']"));
   }
 
   public void submiteUpdateContact() {
@@ -88,11 +92,13 @@ public class ContactHelper extends HelperBase {
 
   public List<AddContact> getContactList() {
 List<AddContact> contacts = new ArrayList<AddContact>();
-List<WebElement>  elements = wd.findElements(By.xpath("//tr[@name='entry']" ));
+//List<WebElement>  elements = wd.findElements(By.xpath("//tr[@name='entry']" ));
+
+    List<WebElement>  elements = wd.findElements(By.xpath("//tr[@name='entry']" ));
     for (WebElement element : elements){
 
-      String lastname = element.findElement(By.xpath("//td[2]")).getText();
-      String firstname = element.findElement(By.xpath("//td[3]")).getText();
+      String lastname = element.findElement(By.xpath("td[2]")).getText();
+      String firstname = element.findElement(By.xpath("td[3]")).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       AddContact contact = new AddContact(id, firstname,lastname);
       //AddContact contact = new AddContact(firstname, null , lastname, null,null,null,null,null,null);
