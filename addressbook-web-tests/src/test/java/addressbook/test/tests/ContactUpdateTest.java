@@ -19,8 +19,10 @@ public class ContactUpdateTest extends TestBase {
     }
     List<AddContact> before = app.getContactHelper().getContactList();
     app.getContactHelper().editContact(before.size() -1);
-    AddContact contact = new AddContact("test_update", "test_update", "test_update", "test_update company3", "test@test.ru", "8", "July", "1990", null);
-    app.getContactHelper().addContactForm(contact, false);
+    AddContact  contact =new AddContact(before.get(before.size() -1).getId(), "testt_ypdate" , "test_update");
+    //AddContact contact = new AddContact(  "test_update", null, "test_update", null, null, null, null, null, null);
+   // app.getContactHelper().addContactForm(contact, false);
+    app.getContactHelper().addContactFormFIO(contact);
     app.getContactHelper().submiteUpdateContact();
     app.getNavigationHelper().returnToHomePage();
     List<AddContact> after = app.getContactHelper().getContactList();
@@ -30,7 +32,7 @@ public class ContactUpdateTest extends TestBase {
     Comparator<? super AddContact> biId = (k1, k2) -> Integer.compare(k1.getId(), k2.getId());
     before.sort(biId);
     after.sort(biId);
-  //  Assert.assertEquals(before, after);
+    Assert.assertEquals(before, after);
     System.out.println(before);
     System.out.println(after);
   }

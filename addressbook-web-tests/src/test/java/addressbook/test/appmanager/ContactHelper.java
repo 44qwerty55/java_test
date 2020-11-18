@@ -25,6 +25,13 @@ public class ContactHelper extends HelperBase {
     //  wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
   }
 
+
+  public void addContactFormFIO (AddContact addContact ){
+    type(By.name("firstname"), addContact.getFirstname());
+    type(By.name("lastname"), addContact.getLastname());
+  }
+
+
   public void addContactForm(AddContact addContact , boolean creation) {
     type(By.name("firstname"), addContact.getFirstname());
     type(By.name("middlename"), addContact.getMiddlename());
