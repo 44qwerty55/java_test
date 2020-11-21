@@ -14,7 +14,7 @@ public class GroupeModaficationTests extends TestBase {
   public void ensurePrecondition() {
     app.goTo().groupPage();
     if (app.groupe().list().size() == 0) {
-      app.groupe().createGroup(new GropeData("name1", null, null));
+      app.groupe().createGroup(new GropeData().withName("test1"));
       //  before = before +1;
     }
   }
@@ -24,7 +24,7 @@ public class GroupeModaficationTests extends TestBase {
 
     List<GropeData> before = app.groupe().list();
     int index = before.size() -1;
-    GropeData group = new GropeData(before.get(index).getId(),"test_mod", "Test_mod", "Test_mod");
+    GropeData group = new GropeData().withId(before.get(index).getId()).withName("test3").withFooter("test3").withHeader("test3");
     app.groupe().modifyGroup(index, group);
     app.goTo().groupPage();
     List<GropeData> after = app.groupe().list();

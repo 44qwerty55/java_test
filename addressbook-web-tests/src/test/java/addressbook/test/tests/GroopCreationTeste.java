@@ -15,7 +15,7 @@ public class GroopCreationTeste extends TestBase {
     List<GropeData> before = app.groupe().list();
     //  int before = app.getGroupeHelper().getGroupCount();
     app.groupe().initGroupeCreation();
-    GropeData group = new GropeData("name1", "name1", "name1");
+    GropeData group = new GropeData().withName("test2");
     app.groupe().fillGroupeForm(group);
     app.groupe().submitGroupeCreation();
     app.goTo().groupPage();

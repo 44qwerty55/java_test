@@ -16,7 +16,7 @@ public class ContactCreationTeste extends TestBase {
   public void contactCreationTeste() throws Exception {
     app.goTo().groupPage();
     if (!app.groupe().isThereAgroupe()) {
-      app.groupe().createGroup(new GropeData("name1", null, null));
+      app.groupe().createGroup(new GropeData().withName("test4"));
     }
     app.goTo().returnToHomePage();
     List<AddContact> before = app.getContactHelper().getContactList();

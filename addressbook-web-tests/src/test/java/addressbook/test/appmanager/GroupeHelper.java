@@ -85,8 +85,8 @@ public class GroupeHelper extends HelperBase {
     for (WebElement element : elements){
       String name = element.getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      GropeData group = new GropeData(id, name , null , null);
-      groups.add(group);
+    //  GropeData group = new GropeData().withId(id).withName(name);
+      groups.add(new GropeData().withId(id).withName(name));
     }
     return groups;
 
