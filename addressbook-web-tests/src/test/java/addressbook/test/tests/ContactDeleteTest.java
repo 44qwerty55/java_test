@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ContactDeleteTest extends TestBase{
 
-  @Test
+  @Test(enabled = false)
   public void testContactDelete() throws Exception {
     app.getNavigationHelper().gotoContactPage();
     if (! app.getContactHelper().isThereAcontact()) {

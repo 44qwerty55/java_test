@@ -12,7 +12,7 @@ import java.util.List;
 public class ContactCreationTeste extends TestBase {
 
 
-  @Test
+  @Test(enabled = false)
   public void contactCreationTeste() throws Exception {
     app.getNavigationHelper().gotoGroupPage();
     if (!app.getGroupeHelper().isThereAgroupe()) {

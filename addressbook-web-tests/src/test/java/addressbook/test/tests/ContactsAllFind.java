@@ -9,7 +9,7 @@ import java.util.List;
 public class ContactsAllFind extends TestBase {
 
 
-  @Test
+  @Test(enabled = false)
   public void contactFindTeste() throws Exception {
 
     app.getNavigationHelper().returnToHomePage();

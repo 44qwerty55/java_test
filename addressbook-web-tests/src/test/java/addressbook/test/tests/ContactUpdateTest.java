@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ContactUpdateTest extends TestBase {
 
-  @Test
+  @Test(enabled = false)
   public void testContactUpdate() throws Exception {
 
     app.getNavigationHelper().gotoContactPage();
