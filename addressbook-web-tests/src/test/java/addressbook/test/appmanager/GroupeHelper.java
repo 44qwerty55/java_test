@@ -56,6 +56,13 @@ public class GroupeHelper extends HelperBase {
     submitGroupeCreation();
   //  returnToGroupePage();
   }
+  public void modifyGroup(int index, GropeData group) {
+    selectGroupe(index);
+   initGropeModification();
+    fillGroupeForm(group);
+    submitGroupeModification();
+
+  }
 
   public boolean isThereAgroupe() {
     return isElementPresent(By.name("selected[]"));

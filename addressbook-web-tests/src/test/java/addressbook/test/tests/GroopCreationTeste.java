@@ -12,8 +12,6 @@ public class GroopCreationTeste extends TestBase {
 
   @Test
   public void testGroopCreation() throws Exception {
-
-
     app.getNavigationHelper().gotoGroupPage();
     List<GropeData> before = app.getGroupeHelper().getGroupeList();
     //  int before = app.getGroupeHelper().getGroupCount();

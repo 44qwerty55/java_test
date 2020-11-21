@@ -11,15 +11,19 @@ import java.util.List;
 public class GroupDeletetionTests extends TestBase {
   private WebDriver wd;
 
+  @BeforeMethod
+  public void ensurePrecondition() {
+    app.getNavigationHelper().gotoGroupPage();
+    if (! app.getGroupeHelper().isThereAgroupe()) {
+      app.getGroupeHelper().createGroup(new GropeData("name1", null, null));
+      //  before = before +1;
+    }
+  }
 
   @Test
   public void testGroupDeletetion() throws Exception {
-    app.getNavigationHelper().gotoGroupPage();
+
    // int before = app.getGroupeHelper().getGroupCount();
-    if (! app.getGroupeHelper().isThereAgroupe()) {
-      app.getGroupeHelper().createGroup(new GropeData("name1", null, null));
-   //   before = before +1;
-    }
     List<GropeData> before = app.getGroupeHelper().getGroupeList();
     app.getNavigationHelper().gotoGroupPage();
     app.getGroupeHelper().selectGroupe(before.size() -1);
