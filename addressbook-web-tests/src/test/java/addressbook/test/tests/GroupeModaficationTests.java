@@ -7,13 +7,14 @@ import org.testng.annotations.Test;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 public class GroupeModaficationTests extends TestBase {
 
   @BeforeMethod
   public void ensurePrecondition() {
     app.goTo().groupPage();
-    if (app.groupe().list().size() == 0) {
+    if (app.groupe().all().size() == 0) {
       app.groupe().createGroup(new GropeData().withName("test1"));
       //  before = before +1;
     }
@@ -22,19 +23,16 @@ public class GroupeModaficationTests extends TestBase {
   @Test
   public void testsgroupeModafication() {
 
-    List<GropeData> before = app.groupe().list();
-    int index = before.size() -1;
-    GropeData group = new GropeData().withId(before.get(index).getId()).withName("test3").withFooter("test3").withHeader("test3");
-    app.groupe().modifyGroup(index, group);
+    Set<GropeData> before = app.groupe().all();
+    GropeData modifiedGroup = before.iterator().next();
+    GropeData group = new GropeData().withId(modifiedGroup.getId()).withName("test3").withFooter("test3").withHeader("test3");
+    app.groupe().modifyGroup(group);
     app.goTo().groupPage();
-    List<GropeData> after = app.groupe().list();
+    Set<GropeData> after = app.groupe().all();
     Assert.assertEquals(after.size(), before.size() );
 
-    before.remove(index);
+    before.remove(modifiedGroup);
     before.add(group);
-    Comparator<? super GropeData> biId = (g1 , g2) -> Integer.compare(g1.getId(), g2.getId());
-    before.sort(biId);
-    after.sort(biId);
    Assert.assertEquals(before, after);
   }
 

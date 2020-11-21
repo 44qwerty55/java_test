@@ -84,12 +84,12 @@ public class GropeData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     GropeData gropeData = (GropeData) o;
-    return Objects.equals(name, gropeData.name);
+    return id == gropeData.id &&
+            Objects.equals(name, gropeData.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name);
+    return Objects.hash(id, name);
   }
-
 }
