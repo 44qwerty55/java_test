@@ -12,7 +12,7 @@ public class ContactsAllFind extends TestBase {
   @Test(enabled = false)
   public void contactFindTeste() throws Exception {
 
-    app.getNavigationHelper().returnToHomePage();
+    app.goTo().returnToHomePage();
     List<AddContact> before = app.getContactHelper().getContactList();
     System.out.println(before);
   }

@@ -12,9 +12,9 @@ public class ContactUpdateTest extends TestBase {
   @Test(enabled = false)
   public void testContactUpdate() throws Exception {
 
-    app.getNavigationHelper().gotoContactPage();
+    app.goTo().gotoContactPage();
     if (!app.getContactHelper().isThereAcontact()) {
-      app.getNavigationHelper().gotoAddContactPage();
+      app.goTo().gotoAddContactPage();
       app.getContactHelper().createContact(new AddContact("test9", "test1", "test1", "test company3", "test@test.ru", "8", "July", "1990", "test_mod"), true);
     }
     List<AddContact> before = app.getContactHelper().getContactList();
@@ -24,7 +24,7 @@ public class ContactUpdateTest extends TestBase {
     // app.getContactHelper().addContactForm(contact, false);
     app.getContactHelper().addContactFormFIO(contact);
     app.getContactHelper().submiteUpdateContact();
-    app.getNavigationHelper().returnToHomePage();
+    app.goTo().returnToHomePage();
     List<AddContact> after = app.getContactHelper().getContactList();
 
     before.remove(before.size() - 1);

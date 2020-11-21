@@ -62,11 +62,11 @@ public class ApplicationManager {
   }*/
 
 
-  public GroupeHelper getGroupeHelper() {
+  public GroupeHelper groupe() {
     return groupeHelper;
   }
 
-  public NavigationHelper getNavigationHelper() {
+  public NavigationHelper goTo() {
     return navigationHelper;
   }
 

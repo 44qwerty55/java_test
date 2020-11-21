@@ -5,22 +5,21 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class GroopCreationTeste extends TestBase {
 
   @Test
   public void testGroopCreation() throws Exception {
-    app.getNavigationHelper().gotoGroupPage();
-    List<GropeData> before = app.getGroupeHelper().getGroupeList();
+    app.goTo().groupPage();
+    List<GropeData> before = app.groupe().list();
     //  int before = app.getGroupeHelper().getGroupCount();
-    app.getGroupeHelper().initGroupeCreation();
+    app.groupe().initGroupeCreation();
     GropeData group = new GropeData("name1", "name1", "name1");
-    app.getGroupeHelper().fillGroupeForm(group);
-    app.getGroupeHelper().submitGroupeCreation();
-    app.getNavigationHelper().gotoGroupPage();
-    List<GropeData> after = app.getGroupeHelper().getGroupeList();
+    app.groupe().fillGroupeForm(group);
+    app.groupe().submitGroupeCreation();
+    app.goTo().groupPage();
+    List<GropeData> after = app.groupe().list();
     //   int after = app.getGroupeHelper().getGroupCount();
     //   app.getGroupeHelper().returnToGroupePage();
 

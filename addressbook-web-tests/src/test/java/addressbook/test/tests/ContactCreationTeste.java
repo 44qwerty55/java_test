@@ -14,17 +14,17 @@ public class ContactCreationTeste extends TestBase {
 
   @Test(enabled = false)
   public void contactCreationTeste() throws Exception {
-    app.getNavigationHelper().gotoGroupPage();
-    if (!app.getGroupeHelper().isThereAgroupe()) {
-      app.getGroupeHelper().createGroup(new GropeData("name1", null, null));
+    app.goTo().groupPage();
+    if (!app.groupe().isThereAgroupe()) {
+      app.groupe().createGroup(new GropeData("name1", null, null));
     }
-    app.getNavigationHelper().returnToHomePage();
+    app.goTo().returnToHomePage();
     List<AddContact> before = app.getContactHelper().getContactList();
-    app.getNavigationHelper().gotoAddContactPage();
+    app.goTo().gotoAddContactPage();
     AddContact contact = new AddContact("test9", "test1", "test1", "test company3", "test@test.ru", "8", "July", "1990", "name1");
     app.getContactHelper().addContactForm((contact), true);
     app.getContactHelper().submitNewContact();
-    app.getNavigationHelper().returnToHomePage();
+    app.goTo().returnToHomePage();
     List<AddContact> after = app.getContactHelper().getContactList();
 
     before.add(contact);

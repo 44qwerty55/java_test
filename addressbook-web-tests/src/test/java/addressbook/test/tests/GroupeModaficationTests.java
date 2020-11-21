@@ -6,16 +6,15 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class GroupeModaficationTests extends TestBase {
 
   @BeforeMethod
   public void ensurePrecondition() {
-    app.getNavigationHelper().gotoGroupPage();
-    if (! app.getGroupeHelper().isThereAgroupe()) {
-      app.getGroupeHelper().createGroup(new GropeData("name1", null, null));
+    app.goTo().groupPage();
+    if (app.groupe().list().size() == 0) {
+      app.groupe().createGroup(new GropeData("name1", null, null));
       //  before = before +1;
     }
   }
@@ -23,12 +22,12 @@ public class GroupeModaficationTests extends TestBase {
   @Test
   public void testsgroupeModafication() {
 
-    List<GropeData> before = app.getGroupeHelper().getGroupeList();
+    List<GropeData> before = app.groupe().list();
     int index = before.size() -1;
     GropeData group = new GropeData(before.get(index).getId(),"test_mod", "Test_mod", "Test_mod");
-    app.getGroupeHelper().modifyGroup(index, group);
-    app.getNavigationHelper().gotoGroupPage();
-    List<GropeData> after = app.getGroupeHelper().getGroupeList();
+    app.groupe().modifyGroup(index, group);
+    app.goTo().groupPage();
+    List<GropeData> after = app.groupe().list();
     Assert.assertEquals(after.size(), before.size() );
 
     before.remove(index);
