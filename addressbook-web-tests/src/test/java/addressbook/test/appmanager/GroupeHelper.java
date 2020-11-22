@@ -1,6 +1,7 @@
 package addressbook.test.appmanager;
 
 import addressbook.test.model.GropeData;
+import addressbook.test.model.Groups;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -112,8 +113,10 @@ public class GroupeHelper extends HelperBase {
   }
 
   // метод возвращает множество данных по группе   ориентируясь на тег "span.group"
-  public Set<GropeData> all() {
-  Set<GropeData> groups = new HashSet<GropeData>();
+ // public Set<GropeData> all() {
+    public Groups all() {
+  //Set<GropeData> groups = new HashSet<GropeData>();
+      Groups groups = new Groups();
     List<WebElement>  elements = wd.findElements(By.cssSelector("span.group"));
     for (WebElement element : elements){
       String name = element.getText();
