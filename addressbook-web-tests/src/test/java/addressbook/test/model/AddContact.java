@@ -3,18 +3,18 @@ package addressbook.test.model;
 import java.util.Objects;
 
 public class AddContact  {
-  private  int id;
-  private final String firstname;
-  private final String middlename;
-  private final String lastname;
-  private final String company;
-  private final String email;
-  private final String bday;
-  private final String bmonth;
-  private final String byear;
-  private final String new_group;
+  private  int id = Integer.MAX_VALUE;
+  private  String firstname;
+  private  String middlename;
+  private  String lastname;
+  private  String company;
+  private  String email;
+  private  String bday;
+  private  String bmonth;
+  private  String byear;
+  private  String new_group;
   //private final String new_group;
-
+/*
   public AddContact(String firstname, String middlename, String lastname, String company, String email, String bday, String bmonth, String byear, String new_group) {
     this.id = Integer.MAX_VALUE;
     this.firstname = firstname;
@@ -41,7 +41,7 @@ public class AddContact  {
       this.byear = null;
       this.new_group = null;
     }
-
+*/
 
   public int getId() {
     return id;
@@ -102,4 +102,54 @@ public class AddContact  {
   public int hashCode() {
     return Objects.hash(firstname, lastname);
   }
+
+  public AddContact withId(int id) {
+    this.id = id;
+    return this;
+  }
+
+  public AddContact withFirstname(String firstname) {
+    this.firstname = firstname;
+    return this;
+  }
+
+  public AddContact withMiddlename(String middlename) {
+    this.middlename = middlename;
+    return this;
+  }
+
+  public AddContact withLastname(String lastname) {
+    this.lastname = lastname;
+    return this;
+  }
+
+  public AddContact withCompany(String company) {
+    this.company = company;
+    return this;
+  }
+
+  public AddContact withEmail(String email) {
+    this.email = email;
+    return this;
+  }
+
+  public AddContact withBday(String bday) {
+    this.bday = bday;
+    return this;
+  }
+
+  public AddContact withBmonth(String bmonth) {
+    this.bmonth = bmonth;
+    return this;
+  }
+
+  public AddContact withByear(String byear) {
+    this.byear = byear;
+    return this;
+  }
+  public AddContact withGroup(String new_group) {
+    this.new_group = new_group;
+    return this;
+  }
+
 }

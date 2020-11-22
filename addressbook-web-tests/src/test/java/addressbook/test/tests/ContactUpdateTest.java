@@ -9,17 +9,18 @@ import java.util.List;
 
 public class ContactUpdateTest extends TestBase {
 
-  @Test(enabled = false)
+  @Test(enabled = true)
   public void testContactUpdate() throws Exception {
 
     app.goTo().gotoContactPage();
     if (!app.getContactHelper().isThereAcontact()) {
       app.goTo().gotoAddContactPage();
-      app.getContactHelper().createContact(new AddContact("test9", "test1", "test1", "test company3", "test@test.ru", "8", "July", "1990", "test_mod"), true);
+      app.getContactHelper().createContact(new  AddContact().withFirstname("test9").withLastname("test1").withMiddlename("test1").withCompany("test company3"), true);
     }
     List<AddContact> before = app.getContactHelper().getContactList();
     app.getContactHelper().editContact(before.size() - 1);
-    AddContact contact = new AddContact(before.get(before.size() - 1).getId(), "testt_ypdate", "test_update");
+    AddContact contact = new AddContact().withId(before.size() - 1).withFirstname("testt_ypdate").withLastname("test_update");
+    //AddContact contact = new AddContact(before.get(before.size() - 1).getId(), "testt_ypdate", "test_update");
     //AddContact contact = new AddContact(  "test_update", null, "test_update", null, null, null, null, null, null);
     // app.getContactHelper().addContactForm(contact, false);
     app.getContactHelper().addContactFormFIO(contact);

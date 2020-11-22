@@ -8,12 +8,12 @@ import java.util.List;
 
 public class ContactDeleteTest extends TestBase{
 
-  @Test(enabled = false)
+  @Test(enabled = true)
   public void testContactDelete() throws Exception {
     app.goTo().gotoContactPage();
     if (! app.getContactHelper().isThereAcontact()) {
       app.goTo().gotoAddContactPage();
-      app.getContactHelper().createContact(new AddContact("test9", "test1", "test1", "test company3", "test@test.ru", "8", "July", "1990","test_mod"), true);
+      app.getContactHelper().createContact(new AddContact().withFirstname("testt_ypdate").withLastname("test_update"), true);;
     app.goTo().returnToHomePage();
     }
     List<AddContact> before = app.getContactHelper().getContactList();

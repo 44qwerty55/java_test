@@ -107,7 +107,7 @@ List<AddContact> contacts = new ArrayList<AddContact>();
       String lastname = element.findElement(By.xpath("td[2]")).getText();
       String firstname = element.findElement(By.xpath("td[3]")).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      AddContact contact = new AddContact(id, firstname,lastname);
+      AddContact contact = new AddContact().withId(id).withFirstname(firstname).withLastname(lastname);
       //AddContact contact = new AddContact(firstname, null , lastname, null,null,null,null,null,null);
       contacts.add(contact);
     }

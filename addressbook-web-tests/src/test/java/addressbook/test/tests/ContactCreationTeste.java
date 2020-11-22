@@ -3,6 +3,7 @@ package addressbook.test.tests;
 import addressbook.test.model.AddContact;
 import addressbook.test.model.GropeData;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Comparator;
@@ -12,16 +13,23 @@ import java.util.List;
 public class ContactCreationTeste extends TestBase {
 
 
-  @Test(enabled = false)
-  public void contactCreationTeste() throws Exception {
+  @BeforeMethod
+  public void ensurePrecondition() {
     app.goTo().groupPage();
-    if (!app.groupe().isThereAgroupe()) {
-      app.groupe().createGroup(new GropeData().withName("test4"));
-    }
+
+  //  if (app.groupe().all().size() == 0) {
+      app.groupe().createGroup(new GropeData().withName("contact_groupe"));
+      //  before = before +1;
+  //  }
+  }
+
+  @Test(enabled = true)
+  public void contactCreationTeste() throws Exception {
+
     app.goTo().returnToHomePage();
     List<AddContact> before = app.getContactHelper().getContactList();
     app.goTo().gotoAddContactPage();
-    AddContact contact = new AddContact("test9", "test1", "test1", "test company3", "test@test.ru", "8", "July", "1990", "name1");
+    AddContact contact = new AddContact().withFirstname("test9").withLastname("test1").withMiddlename("test1").withCompany("test company3").withEmail("test@test.ru").withBday("8").withBmonth("July").withByear("1990").withGroup("contact_groupe");
     app.getContactHelper().addContactForm((contact), true);
     app.getContactHelper().submitNewContact();
     app.goTo().returnToHomePage();
@@ -36,7 +44,7 @@ public class ContactCreationTeste extends TestBase {
 
 
     System.out.println(before);
-    System.out.println(after);
+   System.out.println(after);
   }
 }
 
