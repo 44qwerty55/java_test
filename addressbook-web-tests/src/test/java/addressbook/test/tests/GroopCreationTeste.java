@@ -39,6 +39,8 @@ public class GroopCreationTeste extends TestBase {
 
     //   Assert.assertEquals(after.size(), before.size() +1);
 
+    System.out.println(before);
+    System.out.println(after);
 
 /*int max = 0;
 for (GropeData g : after) {

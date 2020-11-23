@@ -1,8 +1,6 @@
 package addressbook.test.appmanager;
 
-import addressbook.test.model.AddContact;
-import addressbook.test.model.AddContactGroupe;
-import addressbook.test.model.GropeData;
+import addressbook.test.model.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -71,11 +69,24 @@ public class ContactHelper extends HelperBase {
    // click(By.name("selected[]"));
     // click(By.id("MassCB"));
   }
+  public void selectContactById(int id) {
+
+    wd.findElement(By.cssSelector("input[id='"+ id +"']")).click();
+    // click(By.name("selected[]"));
+    // click(By.id("MassCB"));
+  }
+
 
   public void editContact(int index) {
     wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
   //  wd.findElements(By.name("//img[@alt='Edit']")).get(index).click();
     // click(By.xpath("//img[@alt='Edit']"));
+  }
+
+
+  public void modifyContactById(int id) {
+    wd.findElement(By.cssSelector("a[href='edit.php?id="+ id +"'] img[alt='Edit']")).click();
+    // click(By.name("selected[]"));  By.cssSelector("href='edit.php?id=" + id +"' img[@alt='Edit']")
   }
 
   public void submiteUpdateContact() {
@@ -114,4 +125,19 @@ List<AddContact> contacts = new ArrayList<AddContact>();
 return contacts;
 
   }
+
+  public Contacts all() {
+    Contacts contacts = new Contacts();
+    List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
+    for (WebElement element : elements) {
+
+      String lastname = element.findElement(By.xpath("td[2]")).getText();
+      String firstname = element.findElement(By.xpath("td[3]")).getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      contacts.add(new AddContact().withId(id).withFirstname(firstname).withLastname(lastname));
+    }
+    return contacts;
+  }
+
+
 }
