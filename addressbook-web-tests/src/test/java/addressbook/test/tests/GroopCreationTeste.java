@@ -70,4 +70,19 @@ for (GropeData g : after) {
   */
   }
 
+// негативный тест на создание кривого имени группы
+  @Test
+  public void testGroopBadCreation() throws Exception {
+    app.goTo().groupPage();
+    Groups before = app.groupe().all();
+     GropeData group = new GropeData().withName("test2'");
+    app.groupe().createGroup(group);
+    app.goTo().groupPage();
+    // вместо чтения массива просто сравниваем кол-во групп
+    assertThat(app.groupe().getGroupCount(), equalTo(before.size()));
+     Groups after = app.groupe().all();
+   // assertThat(after.size(), equalTo(before.size()));
+    assertThat(after, equalTo(before));
+  }
+
 }
