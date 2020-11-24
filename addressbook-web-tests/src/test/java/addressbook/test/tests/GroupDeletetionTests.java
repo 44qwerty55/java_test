@@ -23,7 +23,6 @@ public class GroupDeletetionTests extends TestBase {
     app.goTo().groupPage();
     if (app.groupe().all().size() == 0) {
       app.groupe().createGroup(new GropeData().withName("test1"));
-      //  before = before +1;
     }
   }
 
