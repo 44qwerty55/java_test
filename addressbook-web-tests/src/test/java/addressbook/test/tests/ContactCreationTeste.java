@@ -31,7 +31,7 @@ public class ContactCreationTeste extends TestBase {
     app.goTo().returnToHomePage();
     Contacts before = app.contacts().all();
     app.goTo().gotoAddContactPage();
-    AddContact contact = new AddContact().withFirstname("test9").withLastname("test1").withMiddlename("test1").withCompany("test company3").withEmail("test@test.ru").withBday("8").withBmonth("July").withByear("1990").withGroup("contact_groupe");
+    AddContact contact = new AddContact().withFirstname("test9").withLastname("test1").withMiddlename("test1").withCompany("test company3").withHome("11").withMobile("22").withWork("333").withEmail("test@test.ru").withBday("8").withBmonth("July").withByear("1990").withGroup("contact_groupe");
     app.contacts().addContactForm((contact), true);
     app.contacts().submitNewContact();
     app.goTo().returnToHomePage();
