@@ -190,10 +190,13 @@ return contacts;
       String lastname = element.findElement(By.xpath("td[2]")).getText();
       String firstname = element.findElement(By.xpath("td[3]")).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      String allEmails = element.findElement(By.xpath("td[5]")).getText();
       String allPhones = element.findElement(By.xpath("td[6]")).getText();
+
       // split() - разрезать на части строку регуляркой
-      String[] phones = allPhones.split("\n");
-      contactCache.add(new AddContact().withId(id).withFirstname(firstname).withLastname(lastname).withHome(phones[0]).withMobile(phones[1]).withWork(phones[2]));
+     // String[] phones = allPhones.split("\n");
+      contactCache.add(new AddContact().withId(id).withFirstname(firstname).withLastname(lastname)
+              .withAllPhones(allPhones).withAllEmails(allEmails));
     }
     return new Contacts(contactCache);
   }
@@ -207,8 +210,12 @@ return contacts;
     String home = wd.findElement(By.name("home")).getAttribute("value");
     String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
     String work = wd.findElement(By.name("work")).getAttribute("value");
+    String email = wd.findElement(By.name("email")).getAttribute("value");
+    String email2 = wd.findElement(By.name("email2")).getAttribute("value");
+    String email3 = wd.findElement(By.name("email3")).getAttribute("value");
     wd.navigate().back();
-    return new AddContact().withId(contact.getId()).withFirstname(firstname).withLastname(lastname).withHome(home).withMobile(mobile).withWork(work);
+    return new AddContact().withId(contact.getId()).withFirstname(firstname).withLastname(lastname)
+            .withHome(home).withMobile(mobile).withWork(work).withEmail(email).withEmail2(email2).withEmail3(email3);
 
   }
 }

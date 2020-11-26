@@ -13,9 +13,15 @@ public class AddContact  {
   private  String work;
 
 
+  private  String allPhones;
+
   private  String email;
   private  String email2;
   private  String email3;
+
+
+
+  private  String allEmails;
   private  String bday;
   private  String bmonth;
   private  String byear;
@@ -78,6 +84,12 @@ public class AddContact  {
   }
 
 
+
+  public String getAllPhones() {
+    return allPhones;
+  }
+
+
   public String getEmail() {
     return email;
   }
@@ -87,6 +99,12 @@ public class AddContact  {
   public String getEmail3() {
     return email3;
   }
+
+  public String getAllEmails() {
+    return allEmails;
+  }
+
+
 
   public String getBday() {
     return bday;
@@ -141,6 +159,10 @@ public class AddContact  {
     this.work = work;
     return this;
   }
+  public AddContact withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
 
 
   public AddContact withEmail(String email) {
@@ -153,6 +175,11 @@ public class AddContact  {
   }
   public AddContact withEmail3(String email3) {
     this.email3 = email3;
+    return this;
+  }
+
+  public AddContact withAllEmails(String allEmails) {
+    this.allEmails = allEmails;
     return this;
   }
 
