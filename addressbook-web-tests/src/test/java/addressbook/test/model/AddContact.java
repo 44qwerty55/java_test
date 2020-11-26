@@ -8,6 +8,11 @@ public class AddContact  {
   private  String middlename;
   private  String lastname;
   private  String company;
+
+
+
+  private  String address;
+
   private  String home;
   private  String mobile;
   private  String work;
@@ -18,10 +23,9 @@ public class AddContact  {
   private  String email;
   private  String email2;
   private  String email3;
-
-
-
   private  String allEmails;
+
+
   private  String bday;
   private  String bmonth;
   private  String byear;
@@ -74,6 +78,13 @@ public class AddContact  {
   public String getCompany() {
     return company;
   }
+
+  public String getAddress() {
+    return address;
+  }
+
+
+
 
   public String getHome() {    return home;  }
   public String getMobile() {
@@ -146,6 +157,14 @@ public class AddContact  {
     this.company = company;
     return this;
   }
+
+  public AddContact withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+
+
   public AddContact withHome(String home) {
     this.home = home;
     return this;
