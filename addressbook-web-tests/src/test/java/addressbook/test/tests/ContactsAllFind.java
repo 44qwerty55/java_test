@@ -33,4 +33,8 @@ public class ContactsAllFind extends TestBase {
     System.out.println(before);
     String groupee = app.groupe().name("na1");
     System.out.println(groupee);
-}}
+}
+
+
+
+}

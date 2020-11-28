@@ -3,6 +3,8 @@ package addressbook.test.appmanager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
 
+import java.io.File;
+
 public class HelperBase {
 
 
@@ -26,6 +28,16 @@ public class HelperBase {
       }
     }
   }
+
+  // для выбора файла
+  protected void attach(By locator, File file) {
+    if (file != null) {
+
+        wd.findElement(locator).sendKeys(file.getAbsolutePath());
+
+    }
+  }
+
 
   protected void select(By locator, String text) {
     click(locator);

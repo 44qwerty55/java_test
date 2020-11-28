@@ -57,7 +57,11 @@ public class ContactHelper extends HelperBase {
 
   }
 
-  public void addContactFormGroupe(AddContactGroupe addContact) {
+
+
+
+
+    public void addContactFormGroupe(AddContactGroupe addContact) {
     select(By.name("new_group"), addContact.getNew_group());
   }
 
@@ -141,6 +145,26 @@ public class ContactHelper extends HelperBase {
     //returnToHomePage();
 
   }
+  public void addContactFormWithFoto(AddContact addContact) {
+    type(By.name("firstname"), addContact.getFirstname());
+      type(By.name("lastname"), addContact.getLastname());
+    attach(By.name("photo"), addContact.getPhoto());
+
+
+  }
+
+  public void createContactWithFoto(AddContact addContact) {
+    type(By.name("firstname"), addContact.getFirstname());
+
+    attach(By.name("photo"), addContact.getPhoto());
+    type(By.name("lastname"), addContact.getLastname());
+    // очищаем кэш
+    contactCache = null;
+
+
+  }
+
+
 
   public boolean isThereAcontact() {
    return isElementPresent(By.name("selected[]"));

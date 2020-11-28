@@ -1,5 +1,6 @@
 package addressbook.test.model;
 
+import java.io.File;
 import java.util.Objects;
 
 public class AddContact  {
@@ -30,6 +31,9 @@ public class AddContact  {
   private  String bmonth;
   private  String byear;
   private  String new_group;
+
+
+  private File photo;
 
 /*
   public AddContact(String firstname, String middlename, String lastname, String company, String email, String bday, String bmonth, String byear, String new_group) {
@@ -130,6 +134,17 @@ public class AddContact  {
   }
 
   public String getNew_group() {    return new_group;  }
+
+  public File getPhoto() {
+    return photo;
+  }
+
+  public AddContact withPhoto(File photo) {
+    this.photo = photo;
+    return this;
+  }
+
+
 
 
 

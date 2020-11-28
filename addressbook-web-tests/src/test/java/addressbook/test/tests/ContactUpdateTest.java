@@ -16,7 +16,9 @@ public class ContactUpdateTest extends TestBase {
     app.goTo().gotoContactPage();
     if (!app.contacts().isThereAcontact()) {
       app.goTo().gotoAddContactPage();
-      app.contacts().createContact(new AddContact().withFirstname("test9").withLastname("test1").withMiddlename("test1").withCompany("test company3"), true);
+      app.contacts().addContactFormFIO(new AddContact().withFirstname("test9").withLastname("test1"));
+      app.contacts().submitNewContact();
+      app.goTo().returnToHomePage();
     }
 
   }
