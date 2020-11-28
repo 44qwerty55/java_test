@@ -16,12 +16,18 @@ public class ContactAddresTest extends TestBase{
     AddContact contactInfoFromEditForm = app.contacts().infoFromEditForm(contact);
 
     System.out.println(contact.getAddress());
-    System.out.println(contactInfoFromEditForm.getAddress());
+    System.out.println(cleaned(contactInfoFromEditForm.getAddress()));
 
 
-    assertThat(contact.getAddress(), equalTo(contactInfoFromEditForm.getAddress()));
+    assertThat(contact.getAddress(), equalTo(cleaned(contactInfoFromEditForm.getAddress())));
 
   }
+  public static String cleaned(String address){
+    return address.replaceAll("\\s+$","").replaceAll("^\\s+","");
+  }
+
+
+
 
 
 }

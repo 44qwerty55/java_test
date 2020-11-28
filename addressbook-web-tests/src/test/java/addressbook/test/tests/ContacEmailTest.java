@@ -30,9 +30,14 @@ public class ContacEmailTest extends TestBase{
 
   private String mergeEmail(AddContact contact) {
     return  Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3()).stream().filter((s) -> ! s.equals(""))
-            .collect(Collectors.joining("\n"));
+            .map(ContacEmailTest::cleaned).collect(Collectors.joining("\n"));
 
   }
+  public static String cleaned(String email){
+    return email.replaceAll("\\s","");
+  }
+
+
 
 
 }
