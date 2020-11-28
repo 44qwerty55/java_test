@@ -19,4 +19,5 @@ dependencies {
     implementation 'org.seleniumhq.selenium:selenium-java:4.0.0-alpha-6'
     implementation 'org.jetbrains:annotations:19.0.0'
     implementation 'org.hamcrest:java-hamcrest:2.0.0.0'
+    implementation 'com.beust:jcommander:1.48'
 }
