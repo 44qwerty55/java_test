@@ -4,25 +4,41 @@ import addressbook.test.model.GropeData;
 import addressbook.test.model.Groups;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.MatcherAssert;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroopCreationTeste extends TestBase {
 
-  @Test
-  public void testGroopCreation() throws Exception {
+
+  // Logger класс org.slf4j   , в скобках указываем класс для логгера. т.е. в котором он работает
+ // Logger logger = LoggerFactory.getLogger(GroopCreationTeste.class);
+
+  @DataProvider
+  public Iterator<Object[]> validGroups() {
+    List<Object[]> list = new ArrayList<Object[]>();
+list.add(new Object[]{new GropeData().withName("test1").withHeader("header 1").withFooter("footer 1")});
+    list.add(new Object[]{new GropeData().withName("test2").withHeader("header 2").withFooter("footer 2")});
+    list.add(new Object[]{new GropeData().withName("test3").withHeader("header 3").withFooter("footer 3")});
+    return list.iterator();
+  }
+
+
+  @Test(dataProvider = "validGroups")
+  public void testGroopCreation(GropeData group) throws Exception {
+
+   // logger.info("start testGroopCreation" );
     app.goTo().groupPage();
     //Set<GropeData> before = app.groupe().all();
     Groups before = app.groupe().all();
     //  int before = app.getGroupeHelper().getGroupCount();
-    GropeData group = new GropeData().withName("test2");
+
     app.groupe().createGroup(group);
     app.goTo().groupPage();
     //Set<GropeData> after = app.groupe().all();
@@ -41,7 +57,7 @@ public class GroopCreationTeste extends TestBase {
 
     System.out.println(before);
     System.out.println(after);
-
+   // logger.info("stop testGroopCreation" );
 /*int max = 0;
 for (GropeData g : after) {
   if (g.getId() > max) {
