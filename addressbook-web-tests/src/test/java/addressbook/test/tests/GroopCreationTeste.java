@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.io.*;
 import java.util.*;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -21,11 +22,20 @@ public class GroopCreationTeste extends TestBase {
  // Logger logger = LoggerFactory.getLogger(GroopCreationTeste.class);
 
   @DataProvider
-  public Iterator<Object[]> validGroups() {
+  public Iterator<Object[]> validGroups() throws IOException {
     List<Object[]> list = new ArrayList<Object[]>();
-list.add(new Object[]{new GropeData().withName("test1").withHeader("header 1").withFooter("footer 1")});
-    list.add(new Object[]{new GropeData().withName("test2").withHeader("header 2").withFooter("footer 2")});
-    list.add(new Object[]{new GropeData().withName("test3").withHeader("header 3").withFooter("footer 3")});
+    BufferedReader reader = new BufferedReader(new FileReader("src\\resourses\\g.csv"));
+    // читаем строки из файла
+    String line = reader.readLine();
+    // читаем пока строки не кончаться
+    while (line != null) {
+      // делем на части каждуюс строку
+      String[] split = line.split(";") ;
+      // деобаляем в массив
+      list.add(new Object[] {new GropeData().withName(split[0]).withHeader(split[1]).withFooter(split[2])});
+      line = reader.readLine();
+
+    }
     return list.iterator();
   }
 
