@@ -72,9 +72,9 @@ public class ContactGenerator {
   private void saveAsXml(List<AddContact> contacts, File file) throws IOException {
     XStream xstream = new XStream();
     // тэг для сохранения данных
-    xstream.alias("groupe", AddContact.class);
+    xstream.alias("contact", AddContact.class);
     // убираем лишние данные
-    xstream.omitField(AddContact.class, "id");
+   // xstream.omitField(AddContact.class, "id");
     String xml = xstream.toXML(contacts);
     Writer writer = new FileWriter(file);
     writer.write(xml);

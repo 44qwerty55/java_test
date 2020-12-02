@@ -38,9 +38,12 @@ public class GroopCreationTeste extends TestBase {
 
     }
     XStream xstream = new XStream();
+    xstream.alias("groupe", GropeData.class);
+    // убираем лишние данные
+    xstream.omitField(GropeData.class, "id");
     // xstream обрабатывает анотации
   //  xstream.omitField(GropeData.class, "id");
-  xstream.processAnnotations(GropeData.class);
+  //xstream.processAnnotations(GropeData.class);
     List<GropeData> groups = (List<GropeData>)    xstream.fromXML(xml);
  //  List<GropeData> groups = (List<GropeData>) xstreame.fromXML(xml);
    // к каждому объекту применяем функцию, которая объект GropeData заворачиваем в массив stream().max((g) -> new Object[] {g}) после вызываем коллект, который из потока собирает список из него берем итератор collect(Collectors.toList()).iterator()
@@ -67,7 +70,7 @@ public class GroopCreationTeste extends TestBase {
   }
 
 
-  @Test(dataProvider = "validGroupsFromJson")
+  @Test(dataProvider = "validGroupsFromXml")
   public void testGroopCreation(GropeData group)  {
 
    // logger.info("start testGroopCreation" );

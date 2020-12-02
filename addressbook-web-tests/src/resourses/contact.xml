@@ -1,5 +1,6 @@
 <list>
-  <groupe>
+  <contact>
+    <id>2147483647</id>
     <firstname>test 0</firstname>
     <middlename>test 0</middlename>
     <lastname>test 0</lastname>
@@ -12,8 +13,9 @@
     <bmonth>July</bmonth>
     <byear>1982</byear>
     <new__group>contact_groupe</new__group>
-  </groupe>
-  <groupe>
+  </contact>
+  <contact>
+    <id>2147483647</id>
     <firstname>test 1</firstname>
     <middlename>test 1</middlename>
     <lastname>test 1</lastname>
@@ -26,8 +28,9 @@
     <bmonth>July</bmonth>
     <byear>1982</byear>
     <new__group>contact_groupe</new__group>
-  </groupe>
-  <groupe>
+  </contact>
+  <contact>
+    <id>2147483647</id>
     <firstname>test 2</firstname>
     <middlename>test 2</middlename>
     <lastname>test 2</lastname>
@@ -40,8 +43,9 @@
     <bmonth>July</bmonth>
     <byear>1982</byear>
     <new__group>contact_groupe</new__group>
-  </groupe>
-  <groupe>
+  </contact>
+  <contact>
+    <id>2147483647</id>
     <firstname>test 3</firstname>
     <middlename>test 3</middlename>
     <lastname>test 3</lastname>
@@ -54,5 +58,5 @@
     <bmonth>July</bmonth>
     <byear>1982</byear>
     <new__group>contact_groupe</new__group>
-  </groupe>
+  </contact>
 </list>

@@ -75,9 +75,12 @@ public class ContactCreationTeste extends TestBase {
 
     }
     XStream xstream = new XStream();
+    xstream.alias("contact", AddContact.class);
+    // убираем лишние данные
+    xstream.omitField(AddContact.class, "id");
     // xstream обрабатывает анотации
     //  xstream.omitField(GropeData.class, "id");
-    xstream.processAnnotations(AddContact.class);
+  //  xstream.processAnnotations(AddContact.class);
     List<AddContact> contacts = (List<AddContact>)    xstream.fromXML(xml);
 
     return contacts.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
@@ -103,7 +106,7 @@ public class ContactCreationTeste extends TestBase {
 
 
 
-  @Test(dataProvider = "validFromJson")
+  @Test(dataProvider = "validFromXml")
   public void contactCreationTesteWithFile(AddContact contact) throws Exception {
 
     app.goTo().returnToHomePage();
