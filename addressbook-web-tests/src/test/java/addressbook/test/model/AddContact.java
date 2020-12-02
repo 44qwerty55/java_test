@@ -1,11 +1,13 @@
 package addressbook.test.model;
 
 import com.google.gson.annotations.Expose;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
 import java.io.File;
 import java.util.Objects;
 
 public class AddContact  {
+  @XStreamOmitField
   private  int id = Integer.MAX_VALUE;
   @Expose
   private  String firstname;

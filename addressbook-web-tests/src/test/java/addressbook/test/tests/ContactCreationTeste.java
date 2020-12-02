@@ -3,6 +3,9 @@ package addressbook.test.tests;
 import addressbook.test.model.AddContact;
 import addressbook.test.model.Contacts;
 import addressbook.test.model.GropeData;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.thoughtworks.xstream.XStream;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -11,6 +14,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -40,6 +44,47 @@ public class ContactCreationTeste extends TestBase {
     return list.iterator();
   }
 
+  @DataProvider
+  public Iterator<Object[]> validFromJson() throws IOException {
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src\\resourses\\contact.json")));
+    String json = "";
+        // читаем строки из файла
+    String line = reader.readLine();
+    // читаем пока строки не кончаться
+    while (line != null) {
+      json += line;
+      line = reader.readLine();
+
+    }
+    Gson gson = new Gson();
+    List<AddContact> contacts =  gson.fromJson(json, new TypeToken<List<AddContact>>(){}.getType());
+    return contacts.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
+
+  }
+
+  @DataProvider
+  public Iterator<Object[]> validFromXml() throws IOException {
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src\\resourses\\contact.xml")));
+    String xml = "";
+    // читаем строки из файла
+    String line = reader.readLine();
+    // читаем пока строки не кончаться
+    while (line != null) {
+      xml += line;
+      line = reader.readLine();
+
+    }
+    XStream xstream = new XStream();
+    // xstream обрабатывает анотации
+    //  xstream.omitField(GropeData.class, "id");
+    xstream.processAnnotations(AddContact.class);
+    List<AddContact> contacts = (List<AddContact>)    xstream.fromXML(xml);
+
+    return contacts.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
+
+
+  }
+
 
 
   @BeforeMethod
@@ -58,7 +103,7 @@ public class ContactCreationTeste extends TestBase {
 
 
 
-  @Test(dataProvider = "validFromCsv")
+  @Test(dataProvider = "validFromJson")
   public void contactCreationTesteWithFile(AddContact contact) throws Exception {
 
     app.goTo().returnToHomePage();
