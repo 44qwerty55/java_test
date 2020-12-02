@@ -1,0 +1,58 @@
+[
+  {
+    "firstname": "test 0",
+    "middlename": "test 0",
+    "lastname": "test 0",
+    "company": "company 0",
+    "home": "1230",
+    "mobile": "12540",
+    "work": "657890",
+    "email": "test0@test.ru",
+    "bday": "7",
+    "bmonth": "July",
+    "byear": "1982",
+    "new_group": "contact_groupe"
+  },
+  {
+    "firstname": "test 1",
+    "middlename": "test 1",
+    "lastname": "test 1",
+    "company": "company 1",
+    "home": "1231",
+    "mobile": "12541",
+    "work": "657891",
+    "email": "test1@test.ru",
+    "bday": "7",
+    "bmonth": "July",
+    "byear": "1982",
+    "new_group": "contact_groupe"
+  },
+  {
+    "firstname": "test 2",
+    "middlename": "test 2",
+    "lastname": "test 2",
+    "company": "company 2",
+    "home": "1232",
+    "mobile": "12542",
+    "work": "657892",
+    "email": "test2@test.ru",
+    "bday": "7",
+    "bmonth": "July",
+    "byear": "1982",
+    "new_group": "contact_groupe"
+  },
+  {
+    "firstname": "test 3",
+    "middlename": "test 3",
+    "lastname": "test 3",
+    "company": "company 3",
+    "home": "1233",
+    "mobile": "12543",
+    "work": "657893",
+    "email": "test3@test.ru",
+    "bday": "7",
+    "bmonth": "July",
+    "byear": "1982",
+    "new_group": "contact_groupe"
+  }
+]

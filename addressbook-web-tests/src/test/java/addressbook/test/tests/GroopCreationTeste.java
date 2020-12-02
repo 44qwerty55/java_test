@@ -2,6 +2,9 @@ package addressbook.test.tests;
 
 import addressbook.test.model.GropeData;
 import addressbook.test.model.Groups;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.thoughtworks.xstream.XStream;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.MatcherAssert;
 import org.slf4j.Logger;
@@ -11,6 +14,7 @@ import org.testng.annotations.*;
 
 import java.io.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -22,26 +26,49 @@ public class GroopCreationTeste extends TestBase {
  // Logger logger = LoggerFactory.getLogger(GroopCreationTeste.class);
 
   @DataProvider
-  public Iterator<Object[]> validGroups() throws IOException {
-    List<Object[]> list = new ArrayList<Object[]>();
-    BufferedReader reader = new BufferedReader(new FileReader("src\\resourses\\g.csv"));
+  public Iterator<Object[]> validGroupsFromXml() throws IOException {
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src\\resourses\\g.xml")));
+    String xml = "";
     // читаем строки из файла
     String line = reader.readLine();
     // читаем пока строки не кончаться
     while (line != null) {
-      // делем на части каждуюс строку
-      String[] split = line.split(";") ;
-      // деобаляем в массив
-      list.add(new Object[] {new GropeData().withName(split[0]).withHeader(split[1]).withFooter(split[2])});
+      xml += line;
+       line = reader.readLine();
+
+    }
+    XStream xstream = new XStream();
+    // xstream обрабатывает анотации
+  //  xstream.omitField(GropeData.class, "id");
+  xstream.processAnnotations(GropeData.class);
+    List<GropeData> groups = (List<GropeData>)    xstream.fromXML(xml);
+ //  List<GropeData> groups = (List<GropeData>) xstreame.fromXML(xml);
+   // к каждому объекту применяем функцию, которая объект GropeData заворачиваем в массив stream().max((g) -> new Object[] {g}) после вызываем коллект, который из потока собирает список из него берем итератор collect(Collectors.toList()).iterator()
+   return groups.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
+
+  }
+
+  @DataProvider
+  public Iterator<Object[]> validGroupsFromJson() throws IOException {
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src\\resourses\\g.json")));
+    String json = "";
+    // читаем строки из файла
+    String line = reader.readLine();
+    // читаем пока строки не кончаться
+    while (line != null) {
+      json += line;
       line = reader.readLine();
 
     }
-    return list.iterator();
+    Gson gson = new Gson();
+    List<GropeData> groups =  gson.fromJson(json, new TypeToken<List<GropeData>>(){}.getType());
+     return groups.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
+
   }
 
 
-  @Test(dataProvider = "validGroups")
-  public void testGroopCreation(GropeData group) throws Exception {
+  @Test(dataProvider = "validGroupsFromJson")
+  public void testGroopCreation(GropeData group)  {
 
    // logger.info("start testGroopCreation" );
     app.goTo().groupPage();
@@ -97,7 +124,7 @@ for (GropeData g : after) {
   }
 
 // негативный тест на создание кривого имени группы
-  @Test
+  @Test(enabled = false)
   public void testGroopBadCreation() throws Exception {
     app.goTo().groupPage();
     Groups before = app.groupe().all();

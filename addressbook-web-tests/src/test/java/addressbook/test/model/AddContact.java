@@ -1,35 +1,46 @@
 package addressbook.test.model;
 
+import com.google.gson.annotations.Expose;
+
 import java.io.File;
 import java.util.Objects;
 
 public class AddContact  {
   private  int id = Integer.MAX_VALUE;
+  @Expose
   private  String firstname;
+  @Expose
   private  String middlename;
+  @Expose
   private  String lastname;
+  @Expose
   private  String company;
 
 
 
   private  String address;
-
+  @Expose
   private  String home;
+  @Expose
   private  String mobile;
+  @Expose
   private  String work;
 
 
   private  String allPhones;
-
+  @Expose
   private  String email;
   private  String email2;
   private  String email3;
   private  String allEmails;
 
-
+  @Expose
   private  String bday;
+  @Expose
   private  String bmonth;
+  @Expose
   private  String byear;
+  @Expose
   private  String new_group;
 
 

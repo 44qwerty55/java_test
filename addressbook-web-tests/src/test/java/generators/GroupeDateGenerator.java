@@ -4,7 +4,9 @@ import addressbook.test.model.GropeData;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
-import com.beust.jcommander.Parameters;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.thoughtworks.xstream.XStream;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -22,8 +24,10 @@ public class GroupeDateGenerator {
   @Parameter(names = "-f", description = "file")
   public String file;
 
-  public static void main(String[] args) throws IOException {
+  @Parameter(names = "-d", description = "date Format")
+  public String format;
 
+  public static void main(String[] args) throws IOException {
    // переменные с учетом вывода из cmd
     GroupeDateGenerator  generator = new GroupeDateGenerator();
     // вывод описания в консоль
@@ -53,11 +57,43 @@ public class GroupeDateGenerator {
 
   private void run() throws IOException {
     List<GropeData> groups = generateGroups(count);
-    save(groups , new File(file));
+    if (format.equals("csv")){
+      saveAsCsv(groups , new File(file));
+    } else if (format.equals("xml")){
+      saveAsXml(groups , new File(file));
+    } else if (format.equals("json")) {
+      saveAsJson(groups, new File(file));
+    } else {
+      System.out.println("bad format " + format);
+    }
+
+  }
+
+  private void saveAsJson(List<GropeData> groups, File file) throws IOException {
+   // формат jsona
+    Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+    String json = gson.toJson(groups);
+
+    // записываем в файл
+    Writer writer = new FileWriter(file);
+    writer.write(json);
+    writer.close();
+  }
+
+  private void saveAsXml(List<GropeData> groups, File file) throws IOException {
+    XStream xstream = new XStream();
+    // тэг для сохранения данных
+    xstream.alias("groupe", GropeData.class);
+    // убираем лишние данные
+    xstream.omitField(GropeData.class, "id");
+    String xml = xstream.toXML(groups);
+    Writer writer = new FileWriter(file);
+    writer.write(xml);
+    writer.close();
   }
 
   // для вызова без командной строки нужно прописать методам значение static (private static void save)
-  private  void save(List<GropeData> groups, File file) throws IOException {
+  private  void saveAsCsv(List<GropeData> groups, File file) throws IOException {
     File currentDir = new File(".");
     currentDir.getAbsolutePath();
     System.out.println("qwerty " + currentDir.getAbsolutePath());
