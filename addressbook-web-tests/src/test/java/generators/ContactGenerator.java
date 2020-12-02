@@ -89,7 +89,7 @@ public class ContactGenerator {
     // запись в файл
     Writer writer = new FileWriter(file);
     for (AddContact contact : contacts){
-      writer.write(String.format("%s;%s;%s,%s;%s;%s,%s;%s;%s,%s;%s;%s\n", contact.getFirstname(),contact.getLastname(),contact.getMiddlename()
+      writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getFirstname(),contact.getLastname(),contact.getMiddlename()
       ,contact.getCompany(),contact.getHome(),contact.getMobile(),contact.getWork(),contact.getEmail(),contact.getBday()
       ,contact.getBmonth(),contact.getByear(),contact.getNew_group()));
     }
