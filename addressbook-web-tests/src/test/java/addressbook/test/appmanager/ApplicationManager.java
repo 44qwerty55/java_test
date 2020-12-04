@@ -10,12 +10,18 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 //import sun.plugin2.util.BrowserType;
 
 public class ApplicationManager {
   WebDriver wd;
+  private final Properties properties;
   private SessionHelper sessionHelper;
   private NavigationHelper navigationHelper;
   private GroupeHelper groupeHelper;
@@ -24,9 +30,13 @@ public class ApplicationManager {
 
   public ApplicationManager(String browser) {
     this.browser = browser;
+    properties = new Properties();
   }
 
-  public void init() {
+  public void init() throws IOException {
+    String target =  System.getProperty("target" , "local");
+
+    properties.load(new FileReader(new File(String.format("src\\test\\java\\resourses\\%s.properties", target))));
     // String browser = BrowserType.FIREFOX;
     if (browser.equals(BrowserType.FIREFOX)) {
       wd = new FirefoxDriver();
@@ -38,13 +48,18 @@ public class ApplicationManager {
 
     // wd = new FirefoxDriver();
     wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-    wd.get("http://localhost/addressbook/");
+    //   wd.get("http://localhost/addressbook/");
+    //подстановка из файла
+    wd.get(properties.getProperty("web.baseUrl"));
     groupeHelper = new GroupeHelper(wd);
     navigationHelper = new NavigationHelper(wd);
     sessionHelper = new SessionHelper(wd);
     contactHelper = new ContactHelper(wd);
     // login
-    sessionHelper.login("admin", "secret");
+    // подстановка логина и пароля  напрямую
+    // sessionHelper.login("admin", "secret");
+    // подстановка логина и пароля  из файла
+    sessionHelper.login(properties.getProperty("web.adminLogin"),properties.getProperty("web.adminPassword"));
   }
 
 
