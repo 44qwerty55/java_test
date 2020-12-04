@@ -24,3 +24,5 @@ dependencies {
     implementation 'com.thoughtworks.xstream:xstream:1.4.8'
     implementation 'com.google.code.gson:gson:2.8.6'
 }
+task testGroups(type: Test) {    useTestNG {suites 'src/test/java/resourses/testng-groups.xml' } }
+task testContacts(type: Test) {    useTestNG {suites 'src/test/java/resourses/testng-contacts.xml' } }

@@ -28,7 +28,7 @@ public class GroopCreationTeste extends TestBase {
   @DataProvider
   public Iterator<Object[]> validGroupsFromXml() throws IOException {
     // для автоматического закрытия файла
-  try  (BufferedReader reader = new BufferedReader(new FileReader(new File("src\\resourses\\g.xml")))) {
+  try  (BufferedReader reader = new BufferedReader(new FileReader(new File("src\\test\\java\\resourses\\g.xml")))) {
     String xml = "";
     // читаем строки из файла
     String line = reader.readLine();
@@ -54,7 +54,7 @@ public class GroopCreationTeste extends TestBase {
 
   @DataProvider
   public Iterator<Object[]> validGroupsFromJson() throws IOException {
-    BufferedReader reader = new BufferedReader(new FileReader(new File("src\\resourses\\g.json")));
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src\\test\\java\\resourses\\g.json")));
     String json = "";
     // читаем строки из файла
     String line = reader.readLine();

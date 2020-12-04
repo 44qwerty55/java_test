@@ -27,7 +27,7 @@ public class ContactCreationTeste extends TestBase {
   @DataProvider
   public Iterator<Object[]> validFromCsv() throws IOException {
     List<Object[]> list = new ArrayList<Object[]>();
-    BufferedReader reader =new BufferedReader(new FileReader("src\\resourses\\contact.csv"));
+    BufferedReader reader =new BufferedReader(new FileReader("src\\test\\java\\resourses\\contact.csv"));
     String line = reader.readLine();
     // читаем пока строки не кончаться
     while (line != null) {
@@ -46,7 +46,7 @@ public class ContactCreationTeste extends TestBase {
 
   @DataProvider
   public Iterator<Object[]> validFromJson() throws IOException {
-    BufferedReader reader = new BufferedReader(new FileReader(new File("src\\resourses\\contact.json")));
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src\\test\\java\\resourses\\contact.json")));
     String json = "";
         // читаем строки из файла
     String line = reader.readLine();
@@ -64,7 +64,7 @@ public class ContactCreationTeste extends TestBase {
 
   @DataProvider
   public Iterator<Object[]> validFromXml() throws IOException {
-    BufferedReader reader = new BufferedReader(new FileReader(new File("src\\resourses\\contact.xml")));
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src\\test\\java\\resourses\\contact.xml")));
     String xml = "";
     // читаем строки из файла
     String line = reader.readLine();
