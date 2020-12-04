@@ -74,10 +74,16 @@ public class GroupeDateGenerator {
     Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
     String json = gson.toJson(groups);
 
+// закрываем файлы, шоб не висели
+    try (Writer writer = new FileWriter(file)) {
+      writer.write(json);
+    }
+
     // записываем в файл
-    Writer writer = new FileWriter(file);
-    writer.write(json);
-    writer.close();
+  //  Writer writer = new FileWriter(file);
+//    writer.write(json);
+    // стандартное закрытие без try
+   // writer.close();
   }
 
   private void saveAsXml(List<GropeData> groups, File file) throws IOException {

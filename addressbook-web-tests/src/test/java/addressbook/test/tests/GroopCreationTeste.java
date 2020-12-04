@@ -27,14 +27,15 @@ public class GroopCreationTeste extends TestBase {
 
   @DataProvider
   public Iterator<Object[]> validGroupsFromXml() throws IOException {
-    BufferedReader reader = new BufferedReader(new FileReader(new File("src\\resourses\\g.xml")));
+    // для автоматического закрытия файла
+  try  (BufferedReader reader = new BufferedReader(new FileReader(new File("src\\resourses\\g.xml")))) {
     String xml = "";
     // читаем строки из файла
     String line = reader.readLine();
     // читаем пока строки не кончаться
     while (line != null) {
       xml += line;
-       line = reader.readLine();
+      line = reader.readLine();
 
     }
     XStream xstream = new XStream();
@@ -42,13 +43,13 @@ public class GroopCreationTeste extends TestBase {
     // убираем лишние данные
     xstream.omitField(GropeData.class, "id");
     // xstream обрабатывает анотации
-  //  xstream.omitField(GropeData.class, "id");
-  //xstream.processAnnotations(GropeData.class);
-    List<GropeData> groups = (List<GropeData>)    xstream.fromXML(xml);
- //  List<GropeData> groups = (List<GropeData>) xstreame.fromXML(xml);
-   // к каждому объекту применяем функцию, которая объект GropeData заворачиваем в массив stream().max((g) -> new Object[] {g}) после вызываем коллект, который из потока собирает список из него берем итератор collect(Collectors.toList()).iterator()
-   return groups.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
-
+    //  xstream.omitField(GropeData.class, "id");
+    //xstream.processAnnotations(GropeData.class);
+    List<GropeData> groups = (List<GropeData>) xstream.fromXML(xml);
+    //  List<GropeData> groups = (List<GropeData>) xstreame.fromXML(xml);
+    // к каждому объекту применяем функцию, которая объект GropeData заворачиваем в массив stream().max((g) -> new Object[] {g}) после вызываем коллект, который из потока собирает список из него берем итератор collect(Collectors.toList()).iterator()
+    return groups.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
+  }
   }
 
   @DataProvider
