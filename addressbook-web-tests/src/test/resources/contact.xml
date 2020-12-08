@@ -1,0 +1,62 @@
+<list>
+  <contact>
+    <id>2147483647</id>
+    <firstname>test 0</firstname>
+    <middlename>test 0</middlename>
+    <lastname>test 0</lastname>
+    <company>company 0</company>
+    <home>1230</home>
+    <mobile>12540</mobile>
+    <work>657890</work>
+    <email>test0@test.ru</email>
+    <bday>7</bday>
+    <bmonth>July</bmonth>
+    <byear>1982</byear>
+    <new__group>contact_groupe</new__group>
+  </contact>
+  <contact>
+    <id>2147483647</id>
+    <firstname>test 1</firstname>
+    <middlename>test 1</middlename>
+    <lastname>test 1</lastname>
+    <company>company 1</company>
+    <home>1231</home>
+    <mobile>12541</mobile>
+    <work>657891</work>
+    <email>test1@test.ru</email>
+    <bday>7</bday>
+    <bmonth>July</bmonth>
+    <byear>1982</byear>
+    <new__group>contact_groupe</new__group>
+  </contact>
+  <contact>
+    <id>2147483647</id>
+    <firstname>test 2</firstname>
+    <middlename>test 2</middlename>
+    <lastname>test 2</lastname>
+    <company>company 2</company>
+    <home>1232</home>
+    <mobile>12542</mobile>
+    <work>657892</work>
+    <email>test2@test.ru</email>
+    <bday>7</bday>
+    <bmonth>July</bmonth>
+    <byear>1982</byear>
+    <new__group>contact_groupe</new__group>
+  </contact>
+  <contact>
+    <id>2147483647</id>
+    <firstname>test 3</firstname>
+    <middlename>test 3</middlename>
+    <lastname>test 3</lastname>
+    <company>company 3</company>
+    <home>1233</home>
+    <mobile>12543</mobile>
+    <work>657893</work>
+    <email>test3@test.ru</email>
+    <bday>7</bday>
+    <bmonth>July</bmonth>
+    <byear>1982</byear>
+    <new__group>contact_groupe</new__group>
+  </contact>
+</list>

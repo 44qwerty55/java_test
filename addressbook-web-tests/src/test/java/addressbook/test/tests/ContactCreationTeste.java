@@ -27,7 +27,7 @@ public class ContactCreationTeste extends TestBase {
   @DataProvider
   public Iterator<Object[]> validFromCsv() throws IOException {
     List<Object[]> list = new ArrayList<Object[]>();
-    BufferedReader reader =new BufferedReader(new FileReader("src\\test\\java\\resourses\\contact.csv"));
+    BufferedReader reader =new BufferedReader(new FileReader("src\\test\\resources\\contact.csv"));
     String line = reader.readLine();
     // читаем пока строки не кончаться
     while (line != null) {
@@ -46,7 +46,7 @@ public class ContactCreationTeste extends TestBase {
 
   @DataProvider
   public Iterator<Object[]> validFromJson() throws IOException {
-    BufferedReader reader = new BufferedReader(new FileReader(new File("src\\test\\java\\resourses\\contact.json")));
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src\\test\\resources\\contact.json")));
     String json = "";
         // читаем строки из файла
     String line = reader.readLine();
@@ -64,7 +64,7 @@ public class ContactCreationTeste extends TestBase {
 
   @DataProvider
   public Iterator<Object[]> validFromXml() throws IOException {
-    BufferedReader reader = new BufferedReader(new FileReader(new File("src\\test\\java\\resourses\\contact.xml")));
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src\\test\\resources\\contact.xml")));
     String xml = "";
     // читаем строки из файла
     String line = reader.readLine();
@@ -153,7 +153,7 @@ public class ContactCreationTeste extends TestBase {
     app.goTo().returnToHomePage();
     Contacts before = app.contacts().all();
     app.goTo().gotoAddContactPage();
-    File photo = new File("src\\resourses\\jordan.jpg");
+    File photo = new File("src\\test\\resources\\jordan.jpg");
     AddContact contact = new AddContact().withFirstname("testf").withLastname("test1").withPhoto(photo);
     app.contacts().createContactWithFoto(contact);
     app.contacts().submitNewContact();

@@ -20,10 +20,11 @@ dependencies {
     implementation 'org.jetbrains:annotations:19.0.0'
     implementation 'org.hamcrest:java-hamcrest:2.0.0.0'
     implementation 'com.beust:jcommander:1.48'
-//    implementation 'ch.qos.logback:logback-classic:1.2.3'
+    implementation 'ch.qos.logback:logback-classic:1.2.3'
     implementation 'com.thoughtworks.xstream:xstream:1.4.8'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'mysql:mysql-connector-java:8.0.22'
+    implementation 'org.hibernate:hibernate-core:5.4.24.Final'
 }
 task testGroups(type: Test) {    useTestNG {suites 'src/test/java/resourses/testng-groups.xml' }
     if (project.hasProperty('browser')){
