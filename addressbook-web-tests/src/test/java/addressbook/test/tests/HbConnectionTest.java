@@ -2,6 +2,7 @@ package addressbook.test.tests;
 
 
 
+import addressbook.test.model.AddContact;
 import addressbook.test.model.GropeData;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -36,10 +37,20 @@ public class HbConnectionTest {
     }
   }
 
+  @Test(enabled = true)
+  public void testHbConnectionContact() {
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    List<AddContact> result = session.createQuery("from AddContact where deprecated = '0000-00-00'").list();
+    for (AddContact contact : result) {
+      System.out.println(contact);
+    }
+    session.getTransaction().commit();
+    session.close();
+  }
 
-
-  @Test
-  public void testHbConnection() {
+  @Test(enabled = false)
+  public void testHbConnectionGroupe() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
     List<GropeData> result = session.createQuery("from GropeData").list();
