@@ -2,6 +2,7 @@ package addressbook.test.model;
 
 import com.google.common.collect.ForwardingSet;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,6 +13,15 @@ public class Contacts extends ForwardingSet<AddContact> {
   public Contacts(Contacts contacts) {
     this.delegate = new HashSet<AddContact>(contacts.delegate);
   }
+
+  // конструктор для контактов из бд, что бы построить по произвольной коллекции
+  public Contacts(Collection<AddContact> contacts) {
+    // строим множество объектов HashSet из коллекции
+    this.delegate = new HashSet<AddContact>(contacts);
+  }
+
+
+
 public Contacts(){
     this.delegate = new HashSet<>();
 }

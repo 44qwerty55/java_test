@@ -3,9 +3,11 @@ package addressbook.test.tests;
 import addressbook.test.model.AddContact;
 import addressbook.test.model.Contacts;
 import addressbook.test.model.GropeData;
+import addressbook.test.model.Groups;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
+import org.hibernate.Session;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -88,8 +90,25 @@ public class ContactCreationTeste extends TestBase {
 
   }
 
+  // проверка на название группы через БД
+  @BeforeMethod
+  public void ensurePrecondition() {
 
+    Groups result = app.db().groups();
+    String contactGrroup = null;
+    for (GropeData group : result) {
 
+      if (group.getName().equals("contact_groupe")) {
+        contactGrroup = group.getName();
+      }
+    }
+    if (contactGrroup == null) {
+      app.goTo().groupPage();
+      app.groupe().createGroup(new GropeData().withName("contact_groupe"));
+    }
+  }
+
+/* старая проверка на название группы через браузер
   @BeforeMethod
   public void ensurePrecondition() {
 
@@ -100,7 +119,7 @@ public class ContactCreationTeste extends TestBase {
     }
 
   }
-
+*/
 
 
 
@@ -109,20 +128,19 @@ public class ContactCreationTeste extends TestBase {
   @Test(dataProvider = "validFromXml")
   public void contactCreationTesteWithFile(AddContact contact) throws Exception {
 
-    app.goTo().returnToHomePage();
-    Contacts before = app.contacts().all();
+    Contacts before = app.db().contacts();
     app.goTo().gotoAddContactPage();
 
     app.contacts().createContact(contact, true);
       app.goTo().returnToHomePage();
-    Contacts after = app.contacts().all();
+    Contacts after = app.db().contacts();
     assertThat(after.size(), equalTo(before.size() + 1));
     assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
 
   }
 
 
-
+  // получение списка контактов из веб для работы надо перегенерить метод сравнения в GropeData  equals и hashCode на те значения которые отображаються в веб интерфейсе
   @Test(enabled = false)
   public void contactCreationTeste() throws Exception {
 
@@ -142,11 +160,8 @@ public class ContactCreationTeste extends TestBase {
     assertThat(after.size(), equalTo(before.size() + 1));
     assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
 
-
-  //  System.out.println(before);
-  //  System.out.println(after);
   }
-
+  // получение списка контактов из веб для работы надо перегенерить метод сравнения в GropeData  equals и hashCode на те значения которые отображаються в веб интерфейсе
   @Test(enabled = false)
   public void contactCreationTesteWithFoto() throws Exception {
 

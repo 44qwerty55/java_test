@@ -13,6 +13,18 @@ public class ContactUpdateTest extends TestBase {
 
   @BeforeMethod
   public void ensurePrecondition() {
+
+    if (app.db().contacts().size() == 0)
+  {
+      app.goTo().gotoAddContactPage();
+      app.contacts().addContactFormFIO(new AddContact().withFirstname("test9").withLastname("test1"));
+      app.contacts().submitNewContact();
+    }
+
+  }
+/* проверка через веб
+  @BeforeMethod
+  public void ensurePrecondition() {
     app.goTo().gotoContactPage();
     if (!app.contacts().isThereAcontact()) {
       app.goTo().gotoAddContactPage();
@@ -20,27 +32,24 @@ public class ContactUpdateTest extends TestBase {
       app.contacts().submitNewContact();
       app.goTo().returnToHomePage();
     }
-
   }
+*/
 
 
   @Test(enabled = true)
   public void testContactUpdate() throws Exception {
 
-    Contacts before = app.contacts().all();
-
+    Contacts before = app.db().contacts();
+    app.goTo().gotoContactPage();
     AddContact modifineContact = before.iterator().next();
     app.contacts().modifyContactById(modifineContact.getId());
     AddContact contact = new AddContact().withId(modifineContact.getId()).withFirstname("testt_ypdate").withLastname("test_update");
+
     app.contacts().addContactFormFIO(contact);
     app.contacts().submiteUpdateContact();
-    app.goTo().returnToHomePage();
-
-    Contacts after = app.contacts().all();
+    Contacts after = app.db().contacts();
     Assert.assertEquals(after.size(), before.size());
     assertThat(after, equalTo(before.withRemove(modifineContact).withAdded(contact)));
 
-    System.out.println(before);
-    System.out.println(after);
   }
 }

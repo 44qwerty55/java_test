@@ -2,7 +2,9 @@ package addressbook.test.tests;
 
 import addressbook.test.model.AddContact;
 import addressbook.test.model.Contacts;
+import addressbook.test.model.GropeData;
 import addressbook.test.model.Groups;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -10,6 +12,17 @@ import java.util.List;
 
 public class ContactsAllFind extends TestBase {
 
+
+  @BeforeMethod
+  public void ensurePrecondition() {
+
+    Groups result =   app.db().groups();
+    for (GropeData group : result) {
+      System.out.println(group);
+      System.out.println(group.getName());
+    }
+
+  }
 
   @Test(enabled = false)
   public void contactFindTeste() throws Exception {
