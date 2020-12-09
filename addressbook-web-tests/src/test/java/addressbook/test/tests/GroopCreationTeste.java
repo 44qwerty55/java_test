@@ -23,7 +23,7 @@ public class GroopCreationTeste extends TestBase {
 
 
   // Logger класс org.slf4j   , в скобках указываем класс для логгера. т.е. в котором он работает
- // Logger logger = LoggerFactory.getLogger(GroopCreationTeste.class);
+  Logger logger = LoggerFactory.getLogger(GroopCreationTeste.class);
 
   @DataProvider
   public Iterator<Object[]> validGroupsFromXml() throws IOException {
@@ -77,16 +77,18 @@ public class GroopCreationTeste extends TestBase {
   @Test(dataProvider = "validGroupsFromJson")
   public void testGroopCreation(GropeData group)  {
 
-   // logger.info("start testGroopCreation" );
+    logger.info("start testGroopCreation" );
+    Groups before = app.db().groups();
     app.goTo().groupPage();
     //Set<GropeData> before = app.groupe().all();
-    Groups before = app.groupe().all();
+    // чтение с веб  Groups before = app.groupe().all();
     //  int before = app.getGroupeHelper().getGroupCount();
 
     app.groupe().createGroup(group);
     app.goTo().groupPage();
     //Set<GropeData> after = app.groupe().all();
-    Groups after = app.groupe().all();
+    Groups after = app.db().groups();
+    // чтение с веб  Groups after = app.groupe().all();
     assertThat(after.size(), equalTo(before.size() + 1));
     //Assert.assertEquals(after.size(), before.size() +1);
     // превращаем after в поток объектов (GropeData) stream и  превращаем его в поток идентификаторов mapToInt  и выбираем максимальное значение max и перобразуем в обычное целое число getAsInt
@@ -101,7 +103,7 @@ public class GroopCreationTeste extends TestBase {
 
     System.out.println(before);
     System.out.println(after);
-   // logger.info("stop testGroopCreation" );
+    logger.info("stop testGroopCreation" );
 /*int max = 0;
 for (GropeData g : after) {
   if (g.getId() > max) {

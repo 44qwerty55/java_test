@@ -105,11 +105,13 @@ public class GropeData {
     if (o == null || getClass() != o.getClass()) return false;
     GropeData gropeData = (GropeData) o;
     return id == gropeData.id &&
-            Objects.equals(name, gropeData.name);
+            Objects.equals(name, gropeData.name) &&
+            Objects.equals(header, gropeData.header) &&
+            Objects.equals(footer, gropeData.footer);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name);
+    return Objects.hash(id, name, header, footer);
   }
 }

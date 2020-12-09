@@ -20,8 +20,8 @@ public class GroupDeletetionTests extends TestBase {
 
   @BeforeMethod
   public void ensurePrecondition() {
-    app.goTo().groupPage();
-    if (app.groupe().all().size() == 0) {
+    if (app.db().groups().size() == 0) {
+      app.goTo().groupPage();
       app.groupe().createGroup(new GropeData().withName("test1"));
     }
   }
@@ -30,7 +30,8 @@ public class GroupDeletetionTests extends TestBase {
   public void testGroupDeletetion() throws Exception {
 
    // int before = app.getGroupeHelper().getGroupCount();
-   Groups before = app.groupe().all();
+    Groups before = app.db().groups();
+    app.goTo().groupPage();
     // выбираем группу, метод iterator последовательно перебирает элементы множества и next берет следующий элемент
     GropeData deletedGroupe = before.iterator().next();
    // int index = before.size() -1;
@@ -38,7 +39,7 @@ public class GroupDeletetionTests extends TestBase {
      app.groupe().delete(deletedGroupe);
     app.goTo().groupPage();
     // int after = app.getGroupeHelper().getGroupCount();
-    Groups after = app.groupe().all();
+    Groups after = app.db().groups();
     assertEquals(after.size(), before.size() -1);
    // before.remove(deletedGroupe);
 

@@ -54,7 +54,7 @@ public class GroupeModaficationTests extends TestBase {
 
 
 
-  // получение списка групп из веб
+  // получение списка групп из веб для работы надо перегенерить метод сравнения в GropeData  equals и hashCode на те значения которые отображаються в веб интерфейсе
   @Test(enabled = false)
   public void testsGroupeModafication() {
     app.goTo().groupPage();
