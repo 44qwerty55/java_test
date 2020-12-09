@@ -26,11 +26,13 @@ public class AddContact  {
   @Column(name = "lastname")
   private  String lastname;
   @Expose
-  @Transient
+  @Column(name = "company")
   private  String company;
 
 
-  @Transient
+  @Expose
+  @Column(name = "address")
+  @Type(type = "text")
   private  String address;
   @Expose
   @Column(name = "home")
@@ -48,12 +50,14 @@ public class AddContact  {
   @Transient
   private  String allPhones;
   @Expose
-  @Transient
+  @Column(name = "email")
+  @Type(type = "text")
   private  String email;
   @Transient
   private  String email2;
   @Transient
   private  String email3;
+
   @Transient
   private  String allEmails;
 
@@ -293,11 +297,23 @@ public class AddContact  {
     AddContact contact = (AddContact) o;
     return id == contact.id &&
             Objects.equals(firstname, contact.firstname) &&
-            Objects.equals(lastname, contact.lastname);
+            Objects.equals(middlename, contact.middlename) &&
+            Objects.equals(lastname, contact.lastname) &&
+            Objects.equals(company, contact.company) &&
+            Objects.equals(home, contact.home) &&
+            Objects.equals(email, contact.email) &&
+            Objects.equals(address, contact.address) &&
+            Objects.equals(mobile, contact.mobile) &&
+            Objects.equals(work, contact.work) &&
+            Objects.equals(bmonth, contact.bmonth) &&
+            Objects.equals(byear, contact.byear);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstname, lastname);
+    return Objects.hash(id, firstname, middlename, lastname, company, home,email,address, mobile, work, bmonth, byear);
   }
+
+
+
 }

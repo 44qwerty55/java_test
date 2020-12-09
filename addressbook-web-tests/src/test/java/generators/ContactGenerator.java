@@ -89,8 +89,8 @@ public class ContactGenerator {
     // запись в файл
     Writer writer = new FileWriter(file);
     for (AddContact contact : contacts){
-      writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getFirstname(),contact.getLastname(),contact.getMiddlename()
-      ,contact.getCompany(),contact.getHome(),contact.getMobile(),contact.getWork(),contact.getEmail(),contact.getBday()
+      writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getFirstname(),contact.getLastname(),contact.getMiddlename()
+      ,contact.getCompany(),contact.getHome(),contact.getMobile(),contact.getWork(),contact.getAddress(),contact.getEmail(),contact.getBday()
       ,contact.getBmonth(),contact.getByear(),contact.getNew_group()));
     }
     // закрываем файл
@@ -102,9 +102,9 @@ public class ContactGenerator {
     List<AddContact>  contacts = new ArrayList<AddContact>();
     for (int i=0; i< coount; i++){
       contacts.add(new AddContact().withFirstname(String.format("test %s", i))
-              .withLastname(String.format("test %s",i)).withMiddlename(String.format("test %s",i))
+              .withLastname(String.format("testttt %s",i)).withMiddlename(String.format("test %s",i))
       .withCompany(String.format("company %s",i)).withHome(String.format("123%s",i)).withMobile(String.format("1254%s",i))
-      .withWork(String.format("65789%s",i)).withEmail(String.format("test%s@test.ru",i)).withBday(String.format("7"))
+      .withWork(String.format("65789%s",i)).withAddress(String.format("adddresss%s",i)).withEmail(String.format("test%s@test.ru",i)).withBday(String.format("7"))
       .withBmonth(String.format("July")).withByear(String.format("1982")).withGroup(String.format("contact_groupe")));
     }
     return contacts;

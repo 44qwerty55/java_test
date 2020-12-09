@@ -29,6 +29,7 @@ public class ContactHelper extends HelperBase {
   public void addContactFormFIO (AddContact addContact ){
     type(By.name("firstname"), addContact.getFirstname());
     type(By.name("lastname"), addContact.getLastname());
+    type(By.name("middlename"), addContact.getMiddlename());
   }
 
 
@@ -40,6 +41,7 @@ public class ContactHelper extends HelperBase {
     type(By.name("home"), addContact.getHome());
     type(By.name("mobile"), addContact.getMobile());
     type(By.name("work"), addContact.getWork());
+    type(By.name("address"), addContact.getAddress());
     type(By.name("email"), addContact.getEmail());
     type(By.name("email2"), addContact.getEmail2());
     type(By.name("email3"), addContact.getEmail3());

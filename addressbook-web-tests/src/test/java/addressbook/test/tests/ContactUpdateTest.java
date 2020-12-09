@@ -43,9 +43,14 @@ public class ContactUpdateTest extends TestBase {
     app.goTo().gotoContactPage();
     AddContact modifineContact = before.iterator().next();
     app.contacts().modifyContactById(modifineContact.getId());
-    AddContact contact = new AddContact().withId(modifineContact.getId()).withFirstname("testt_ypdate").withLastname("test_update");
+    AddContact contact = new AddContact().withId(modifineContact.getId()).withFirstname("contact_update")
+            .withLastname("contact_update").withMiddlename("contact_update")
+            .withCompany("test contact_update").withHome("11").withMobile("22").withWork("333").withAddress("update")
+            .withEmail("update@test.ru").withBday("8").withBmonth("July")
+            .withByear("1990");
 
-    app.contacts().addContactFormFIO(contact);
+
+    app.contacts().addContactForm((contact), false);
     app.contacts().submiteUpdateContact();
     Contacts after = app.db().contacts();
     Assert.assertEquals(after.size(), before.size());

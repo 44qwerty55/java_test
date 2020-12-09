@@ -1,0 +1,26 @@
+177  [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.24.Final
+486  [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+588  [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+593  [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/addressbook]
+593  [main] INFO  o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {user=root, password=****}
+594  [main] INFO  o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+596  [main] INFO  o.h.e.j.c.i.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 1 (min=1)
+782  [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+1312 [main] INFO  o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3cee53dc] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+1345 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+25516 [main] INFO  a.test.tests.GroopCreationTeste - start testGroopCreation
+26425 [main] INFO  a.test.tests.GroopCreationTeste - stop testGroopCreation
+26425 [main] INFO  a.test.tests.GroopCreationTeste - start testGroopCreation
+27206 [main] INFO  a.test.tests.GroopCreationTeste - stop testGroopCreation
+27206 [main] INFO  a.test.tests.GroopCreationTeste - start testGroopCreation
+28009 [main] INFO  a.test.tests.GroopCreationTeste - stop testGroopCreation
+28009 [main] INFO  a.test.tests.GroopCreationTeste - start testGroopCreation
+28828 [main] INFO  a.test.tests.GroopCreationTeste - stop testGroopCreation
+30286 [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+30286 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/addressbook]
+30286 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {user=root, password=****}
+30286 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+30286 [main] INFO  o.h.e.j.c.i.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 1 (min=1)
+30289 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+30317 [main] INFO  o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@1277a6a1] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+30337 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
