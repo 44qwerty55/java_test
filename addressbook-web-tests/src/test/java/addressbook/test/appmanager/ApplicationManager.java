@@ -27,6 +27,7 @@ public class ApplicationManager {
   private GroupeHelper groupeHelper;
   private ContactHelper contactHelper;
   private String browser;
+  private DbHelper dbHeler;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -37,6 +38,10 @@ public class ApplicationManager {
     String target =  System.getProperty("target" , "local");
 
     properties.load(new FileReader(new File(String.format("src\\test\\resources\\%s.properties", target))));
+
+    // инициализация связи с бд
+    dbHeler = new DbHelper();
+
     // String browser = BrowserType.FIREFOX;
     if (browser.equals(BrowserType.FIREFOX)) {
       wd = new FirefoxDriver();
@@ -60,6 +65,8 @@ public class ApplicationManager {
     // sessionHelper.login("admin", "secret");
     // подстановка логина и пароля  из файла
     sessionHelper.login(properties.getProperty("web.adminLogin"),properties.getProperty("web.adminPassword"));
+
+
   }
 
 
@@ -88,4 +95,5 @@ public class ApplicationManager {
   public ContactHelper contacts() {
     return contactHelper;
   }
+  public DbHelper db() {return  dbHeler;}
 }

@@ -17,6 +17,16 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupeModaficationTests extends TestBase {
 
+ // проверка с условием чтения групп из БД
+ @BeforeMethod
+ public void ensurePrecondition() {
+   if (app.db().groups().size() == 0) {
+     app.goTo().groupPage();
+     app.groupe().createGroup(new GropeData().withName("test1"));
+   }
+ }
+
+  /*  проверка с условием чтение групп из веба
   @BeforeMethod
   public void ensurePrecondition() {
     app.goTo().groupPage();
@@ -25,18 +35,38 @@ public class GroupeModaficationTests extends TestBase {
       //  before = before +1;
     }
   }
+*/
+  // получение списка групп из bd
+  @Test(enabled = true)
+  public void testsGroupeModaficationBd() {
 
-  @Test
-  public void testsgroupeModafication() {
+    Groups before = app.db().groups();
+    GropeData modifiedGroup = before.iterator().next();
+    GropeData group = new GropeData().withId(modifiedGroup.getId()).withName("test3").withFooter("test3").withHeader("test3");
+    app.goTo().groupPage();
+    app.groupe().modifyGroup(group);
+    app.goTo().groupPage();
+    // быстрая проверка счетчик групп, хеширование через веб
+    assertThat(app.groupe().getGroupCount(), equalTo(before.size()));
+    Groups after = app.db().groups();
+    assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
+  }
 
+
+
+  // получение списка групп из веб
+  @Test(enabled = false)
+  public void testsGroupeModafication() {
+    app.goTo().groupPage();
    Groups before = app.groupe().all();
     GropeData modifiedGroup = before.iterator().next();
     GropeData group = new GropeData().withId(modifiedGroup.getId()).withName("test3").withFooter("test3").withHeader("test3");
     app.groupe().modifyGroup(group);
     app.goTo().groupPage();
-   Groups after = app.groupe().all();
-    Assert.assertEquals(after.size(), before.size() );
-
+  // быстрая проверка счетчик групп, хеширование
+assertThat(app.groupe().getGroupCount(), equalTo(before.size()));
+    Groups after = app.groupe().all();
+  //  Assert.assertEquals(after.size(), before.size() );
  //   before.remove(modifiedGroup);
   //  before.add(group);
   // Assert.assertEquals(before, after);
