@@ -46,8 +46,7 @@ public class AddContacToGroupe extends TestBase{
 
   @Test(enabled = true)
   public void addContactToGroupe() throws Exception {
-    Groups beforeGroups = app.db().groups();
-    app.goTo().gotoContactPage();
+     app.goTo().gotoContactPage();
     Contacts before = app.db().contacts();
     AddContact addContactToGroupe = before.iterator().next();
     app.contacts().selectContactById(addContactToGroupe.getId());
