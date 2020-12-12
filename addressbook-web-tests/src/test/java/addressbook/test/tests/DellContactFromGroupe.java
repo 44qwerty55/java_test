@@ -37,27 +37,31 @@ public class DellContactFromGroupe extends TestBase{
     // проверка на наличие группы
     Groups result = app.db().groups();
     String contactGrroup = null;
+    // цикл поиска по всем группам
     for (GropeData group : result) {
-
+      // если нашли группу с нужным названием , из конфига, все ок
       if (group.getName().equals(groupToAdd)) {
         contactGrroup = group.getName();
       }
     }
+    // если поиск по бд с названием группы из конфига дал null добавляем группу с название из конфига
     if (contactGrroup == null) {
       app.goTo().groupPage();
-      // если поиск по бд с названием группы из конфига дал null добавляем группу с название из конфига
       app.groupe().createGroup(new GropeData().withName(groupToAdd));
     }
 
-
+    // проверка на то что есть контакт привязанный к группе
       Groups resultcon = app.db().groups();
       String contactWithGrroup = "true";
       for (GropeData groupsee : resultcon) {
        if (groupsee.getName().equals(groupToAdd) ){
         if (groupsee.getContacts().isEmpty()) {
+          // в группе нет ни одного контакта
           contactWithGrroup = null;
         }
-      }}
+      }
+      }
+    // привязываем любой контакт к группе
       if (contactWithGrroup == null) {
                app.goTo().gotoContactPage();
         Contacts before = app.db().contacts();
