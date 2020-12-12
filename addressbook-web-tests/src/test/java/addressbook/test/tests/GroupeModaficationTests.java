@@ -42,7 +42,7 @@ public class GroupeModaficationTests extends TestBase {
 
     Groups before = app.db().groups();
     GropeData modifiedGroup = before.iterator().next();
-    GropeData group = new GropeData().withId(modifiedGroup.getId()).withName("test3").withFooter("test3").withHeader("test3");
+    GropeData group = new GropeData().withId(modifiedGroup.getId()).withName("test_mod").withFooter("test_mod").withHeader("test_mod");
     app.goTo().groupPage();
     app.groupe().modifyGroup(group);
     app.goTo().groupPage();
@@ -50,6 +50,7 @@ public class GroupeModaficationTests extends TestBase {
     assertThat(app.groupe().getGroupCount(), equalTo(before.size()));
     Groups after = app.db().groups();
     assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
+    verifyGroupListInUI();
   }
 
 
@@ -71,6 +72,7 @@ assertThat(app.groupe().getGroupCount(), equalTo(before.size()));
   //  before.add(group);
   // Assert.assertEquals(before, after);
     assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
+
   }
 
 
