@@ -76,17 +76,21 @@ public class ContactHelper extends HelperBase {
     contactCache = null;
    }
   public void addContactTo(String name) {
-  //  new Select(wd.findElement(By.name("to_group"))).selectByValue(groupeName);
-   // click(By.name("to_group"));
-    select(By.name("to_group"), name);
-   // click(By.name("add"));
-    // очищаем кэш
-  //  contactCache = null;
+     select(By.name("to_group"), name);
   }
   public void submitAddToGroupeContact() {
     click(By.name("add"));
     // очищаем кэш
     contactCache = null;
+  }
+
+
+  public void dellContactFrom() {
+    click(By.name("remove"));
+  }
+  // выбор группы (нужно для all)
+  public void choseGroupe(String name) {
+    select(By.name("group"), name);
   }
 
 

@@ -33,6 +33,11 @@ public class GropeData {
   @ManyToMany(mappedBy = "groups")
   private Set<AddContact> contacts = new HashSet<AddContact>();
 
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name ="address_in_groups",
+          joinColumns = @JoinColumn (name ="group_id"), inverseJoinColumns = @JoinColumn (name = "id"))
+  private Set<GropeData> contactIngroupe = new HashSet<GropeData>();
+
 /*
   public GropeData(int id, String name, String header, String footer) {
     this.id = id;
@@ -71,6 +76,9 @@ public class GropeData {
 
   public Set<AddContact> getContacts() {
     return contacts;
+  }
+  public Set<GropeData> contactIngroupe() {
+    return contactIngroupe;
   }
 
 
