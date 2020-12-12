@@ -44,6 +44,8 @@ public class HelperBase {
     new Select(wd.findElement(locator)).selectByVisibleText(text);
   }
 
+
+
   public boolean isAlertPresent() {
     try {
       wd.switchTo().alert();

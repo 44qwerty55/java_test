@@ -4,8 +4,10 @@ import addressbook.test.model.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
+import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,6 +75,21 @@ public class ContactHelper extends HelperBase {
     // очищаем кэш
     contactCache = null;
    }
+  public void addContactTo(String name) {
+  //  new Select(wd.findElement(By.name("to_group"))).selectByValue(groupeName);
+   // click(By.name("to_group"));
+    select(By.name("to_group"), name);
+   // click(By.name("add"));
+    // очищаем кэш
+  //  contactCache = null;
+  }
+  public void submitAddToGroupeContact() {
+    click(By.name("add"));
+    // очищаем кэш
+    contactCache = null;
+  }
+
+
   public void allertWindow() {
     wd.switchTo().alert().accept();
   }

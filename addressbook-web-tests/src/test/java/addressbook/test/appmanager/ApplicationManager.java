@@ -88,6 +88,11 @@ public class ApplicationManager {
     return groupeHelper;
   }
 
+  // выносим возможность читать файл конфига в тестах
+  public Properties properties(){
+    return properties;
+  }
+
   public NavigationHelper goTo() {
     return navigationHelper;
   }

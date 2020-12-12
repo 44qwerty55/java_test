@@ -124,8 +124,8 @@ public class ContactCreationTeste extends TestBase {
 
 
 
-
-  @Test(dataProvider = "validFromXml" ,enabled = true )
+  //получение данных о группе из файлов
+  @Test(dataProvider = "validFromXml" ,enabled = false )
   public void contactCreationTesteWithFile(AddContact contact) throws Exception {
    // Groups beforeGroups = app.db().groups();
     Contacts before = app.db().contacts();
@@ -139,11 +139,29 @@ public class ContactCreationTeste extends TestBase {
 
   }
 
+  // полученте данных о группе из бд
+  @Test(enabled = true)
+  public void contactCreationTesteWithGroupBd() throws Exception {
+    Groups beforeGroups = app.db().groups();
+    Contacts before = app.db().contacts();
+    app.goTo().gotoAddContactPage();
+
+    AddContact contact = new AddContact().withFirstname("test9").withLastname("test1").withMiddlename("test1")
+            .withCompany("test company3").withAddress("testt").withHome("11").withMobile("22").withWork("333")
+            .withEmail("test@test.ru").withBday("8").withBmonth("July")
+            .withByear("1990").inGroup(beforeGroups.iterator().next());
+    app.contacts().addContactForm((contact), false,true);
+    app.contacts().submitNewContact();
+    app.goTo().returnToHomePage();
+    Contacts after = app.db().contacts();
+    assertThat(after.size(), equalTo(before.size() + 1));
+    assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+
+  }
 
   // получение списка контактов из веб для работы надо перегенерить метод сравнения в GropeData  equals и hashCode на те значения которые отображаються в веб интерфейсе
   @Test(enabled = false)
   public void contactCreationTeste() throws Exception {
- //   Groups beforeGroups = app.db().groups();
     app.goTo().returnToHomePage();
     Contacts before = app.contacts().all();
     app.goTo().gotoAddContactPage();
