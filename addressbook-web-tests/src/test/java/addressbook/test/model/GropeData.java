@@ -30,13 +30,9 @@ public class GropeData {
 
 
   // связь группы и контакта mappedBy = "groups" - ссылка на атрибут в классе AddContact
-  @ManyToMany(mappedBy = "groups")
+  @ManyToMany(mappedBy = "groups",fetch = FetchType.EAGER)
   private Set<AddContact> contacts = new HashSet<AddContact>();
 
-  @ManyToMany(fetch = FetchType.EAGER)
-  @JoinTable(name ="address_in_groups",
-          joinColumns = @JoinColumn (name ="group_id"), inverseJoinColumns = @JoinColumn (name = "id"))
-  private Set<GropeData> contactIngroupe = new HashSet<GropeData>();
 
 /*
   public GropeData(int id, String name, String header, String footer) {
@@ -74,11 +70,8 @@ public class GropeData {
     return footer;
   }
 
-  public Set<AddContact> getContacts() {
-    return contacts;
-  }
-  public Set<GropeData> contactIngroupe() {
-    return contactIngroupe;
+  public Contacts getContacts() {
+    return new Contacts(contacts);
   }
 
 

@@ -47,21 +47,26 @@ public class HbConnectionTest {
     session.close();
 
     for (AddContact contact : result) {
-      System.out.println(contact);
+      System.out.println("qqq   " + contact);
       System.out.println(contact.getGroups());
     }
   }
 
-  @Test(enabled = false)
+  @Test(enabled = true)
   public void testHbConnectionGroupe() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
     List<GropeData> result = session.createQuery("from GropeData").list();
     for (GropeData group : result) {
-      System.out.println(group);
+      System.out.println("ggg   "  + group);
+      System.out.println("ggg   "  + group.getContacts());
     }
     session.getTransaction().commit();
     session.close();
+    for (GropeData group : result) {
+      System.out.println("ggg   "  + group);
+      System.out.println("ggg   "  + group.getContacts());
+    }
   }
 
 }

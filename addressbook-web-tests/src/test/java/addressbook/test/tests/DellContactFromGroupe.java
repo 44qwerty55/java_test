@@ -4,13 +4,22 @@ import addressbook.test.model.AddContact;
 import addressbook.test.model.Contacts;
 import addressbook.test.model.GropeData;
 import addressbook.test.model.Groups;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class DellContactFromGroupe extends TestBase{
 
 
   // переменная с название группы
+  Logger logger = LoggerFactory.getLogger(DellContactFromGroupe.class);
   private String groupe;
 
   @BeforeMethod
@@ -45,7 +54,7 @@ public class DellContactFromGroupe extends TestBase{
       String contactWithGrroup = "true";
       for (GropeData groupsee : resultcon) {
        if (groupsee.getName().equals(groupToAdd) ){
-        if (groupsee.contactIngroupe().isEmpty()) {
+        if (groupsee.getContacts().isEmpty()) {
           contactWithGrroup = null;
         }
       }}
@@ -61,18 +70,45 @@ public class DellContactFromGroupe extends TestBase{
 
 
   }
+
   @Test(enabled = false)
+  public void findIdTest() throws Exception {
+
+    Groups groups = app.db().groups();
+    logger.info("groops   " + groups );
+    List<GropeData> gropes = new ArrayList<>();
+    for (GropeData gr: groups) {
+      if (gr.getName().equals(groupe)) {
+        gropes.add(gr);
+      }
+    }
+    logger.info("нужная группа  " + gropes);
+    GropeData groupQ = gropes.iterator().next();
+    logger.info("нужная группа 2 " + groupQ.getId());
+    AddContact contact = groupQ.getContacts().iterator().next();
+    logger.info("айди   " + contact.getId());
+  }
+
+
+  @Test(enabled = true)
   public void dellContactFromeGroupe() throws Exception {
     app.goTo().gotoContactPage();
     app.contacts().choseGroupe(groupe);
-    app.contacts().selectContactById(268);
+    // ищем id контакта добавленного в группу, что бы потом его выбрать
+    Groups groups = app.db().groups();
+    List<GropeData> gropes = new ArrayList<>();
+    for (GropeData gr: groups) {
+      if (gr.getName().equals(groupe)) {
+        gropes.add(gr);
+      }
+    }
+    GropeData groupQ = gropes.iterator().next();
+    AddContact contact = groupQ.getContacts().iterator().next();
+    // выбираем
+    app.contacts().selectContactById(contact.getId());
     app.contacts().dellContactFrom();
     app.goTo().gotoContactPage();
     app.contacts().choseGroupe("[all]");
-
-
-
-
 
   }
 
