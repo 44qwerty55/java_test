@@ -2,10 +2,8 @@ package addressbook.test.appmanager;
 
 import addressbook.test.model.*;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import java.util.ArrayList;
@@ -33,7 +31,7 @@ public class ContactHelper extends HelperBase {
   }
 
 
-  public void addContactForm(AddContact addContact , boolean creation) {
+  public void addContactForm(AddContact addContact , boolean addGroupeFromString ,boolean addGropeFromBd) {
     type(By.name("firstname"), addContact.getFirstname());
     type(By.name("middlename"), addContact.getMiddlename());
     type(By.name("lastname"), addContact.getLastname());
@@ -50,8 +48,10 @@ public class ContactHelper extends HelperBase {
     type(By.name("byear"), addContact.getByear());
 
 
-    if (creation) {
-      select(By.name("new_group"), addContact.getNew_group());
+    if (addGropeFromBd) {
+      select(By.name("new_group"), addContact.getGroups().iterator().next().getName());
+    } else  if (addGroupeFromString) {
+      select(By.name("new_group"), addContact.getGroupsString());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
@@ -137,9 +137,9 @@ public class ContactHelper extends HelperBase {
     contactCache = null;
   }
 
-  public void createContact(AddContact addContact, boolean b) {
+  public void createContact(AddContact addContact, boolean a ,boolean b) {
    // app.getNavigationHelper().gotoAddContactPage();
-    addContactForm((addContact), true);
+    addContactForm((addContact), true , false);
     //  app.getContactHelper().addContactFormGroupe(new AddContactGroupe("test_mod"));
     submitNewContact();
     // очищаем кэш

@@ -4,11 +4,10 @@ import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "group_list")
@@ -28,6 +27,11 @@ public class GropeData {
   @Column(name = "group_footer")
   @Type(type = "text")
   private  String footer;
+
+
+  // связь группы и контакта mappedBy = "groups" - ссылка на атрибут в классе AddContact
+  @ManyToMany(mappedBy = "groups")
+  private Set<AddContact> contacts = new HashSet<AddContact>();
 
 /*
   public GropeData(int id, String name, String header, String footer) {
@@ -63,6 +67,10 @@ public class GropeData {
 
   public String getFooter() {
     return footer;
+  }
+
+  public Set<AddContact> getContacts() {
+    return contacts;
   }
 
 

@@ -50,7 +50,7 @@ public class ContactUpdateTest extends TestBase {
             .withByear("1990");
 
 
-    app.contacts().addContactForm((contact), false);
+    app.contacts().addContactForm((contact), false , false);
     app.contacts().submiteUpdateContact();
     Contacts after = app.db().contacts();
     Assert.assertEquals(after.size(), before.size());

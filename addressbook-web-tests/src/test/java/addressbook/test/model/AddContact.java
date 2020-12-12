@@ -7,7 +7,9 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "addressbook")
@@ -70,6 +72,19 @@ public class AddContact  {
   @Expose
   @Column(name = "byear")
   private  String byear;
+
+
+  /* было нужно для указания группы без проверки в бд
+  @Expose
+  @Transient
+  private  String new_group;  */
+
+  // помечаем @ManyToMany и сразу присваеваем туда пустое множество  HashSet<GropeData>()
+  // fetch = FetchType.EAGER извлекаем всю инфу из бд,по умолчанию тока запрос
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name ="address_in_groups",
+          joinColumns = @JoinColumn (name ="id"), inverseJoinColumns = @JoinColumn (name = "group_id"))
+  private Set<GropeData> groups = new HashSet<GropeData>();
 
   @Expose
   @Transient
@@ -176,8 +191,15 @@ public class AddContact  {
   public String getByear() {
     return byear;
   }
-
-  public String getNew_group() {    return new_group;  }
+  public String getGroupsString() {    return new_group;  }
+  /*   // было нужно для указания группы без проверки в бд
+  public String getGroups() {    return new_group;  }
+*/
+  // добавили для новго атрибута про проверку групп из бд
+ public Groups getGroups() {
+    // множество превращаем в объект типа групс
+    return new Groups(groups);
+  }
 
   public File getPhoto() {
     return new File(photo);
@@ -275,8 +297,18 @@ public class AddContact  {
     this.byear = byear;
     return this;
   }
+   /* было нужно для указания группы без проверки в бд
   public AddContact withGroup(String new_group) {
     this.new_group = new_group;
+    return this;
+  } */
+
+  public AddContact withGroup(String new_group) {
+    this.new_group = new_group;
+    return this;}
+
+  public AddContact inGroup(GropeData group) {
+    groups.add(group);
     return this;
   }
 
@@ -288,6 +320,7 @@ public class AddContact  {
             ", lastname='" + lastname + '\'' +
             '}';
   }
+
 
 
   @Override

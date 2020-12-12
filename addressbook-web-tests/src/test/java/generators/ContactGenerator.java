@@ -1,6 +1,7 @@
 package generators;
 
 import addressbook.test.model.AddContact;
+import addressbook.test.model.GropeData;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ContactGenerator {
 
@@ -91,7 +93,7 @@ public class ContactGenerator {
     for (AddContact contact : contacts){
       writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getFirstname(),contact.getLastname(),contact.getMiddlename()
       ,contact.getCompany(),contact.getHome(),contact.getMobile(),contact.getWork(),contact.getAddress(),contact.getEmail(),contact.getBday()
-      ,contact.getBmonth(),contact.getByear(),contact.getNew_group()));
+      ,contact.getBmonth(),contact.getByear(),contact.getGroups()));
     }
     // закрываем файл
     writer.close();
@@ -104,8 +106,10 @@ public class ContactGenerator {
       contacts.add(new AddContact().withFirstname(String.format("test %s", i))
               .withLastname(String.format("testttt %s",i)).withMiddlename(String.format("test %s",i))
       .withCompany(String.format("company %s",i)).withHome(String.format("123%s",i)).withMobile(String.format("1254%s",i))
-      .withWork(String.format("65789%s",i)).withAddress(String.format("adddresss%s",i)).withEmail(String.format("test%s@test.ru",i)).withBday(String.format("7"))
-      .withBmonth(String.format("July")).withByear(String.format("1982")).withGroup(String.format("contact_groupe")));
+      .withWork(String.format("66666%s",i)).withAddress(String.format("adddresss%s",i))
+              .withEmail(String.format("test%s@test.ru",i)).withBday(String.format("7"))
+      .withBmonth(String.format("July")).withByear(String.format("1982"))
+              .withGroup(String.format("contact_groupe")));
     }
     return contacts;
   }

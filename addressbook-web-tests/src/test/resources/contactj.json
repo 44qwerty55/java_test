@@ -1,0 +1,32 @@
+[
+  {
+    "firstname": "test 0",
+    "middlename": "test 0",
+    "lastname": "testttt 0",
+    "company": "company 0",
+    "address": "adddresss0",
+    "home": "1230",
+    "mobile": "12540",
+    "work": "666660",
+    "email": "test0@test.ru",
+    "bday": "7",
+    "bmonth": "July",
+    "byear": "1982",
+    "new_group": "contact_groupe"
+  },
+  {
+    "firstname": "test 1",
+    "middlename": "test 1",
+    "lastname": "testttt 1",
+    "company": "company 1",
+    "address": "adddresss1",
+    "home": "1231",
+    "mobile": "12541",
+    "work": "666661",
+    "email": "test1@test.ru",
+    "bday": "7",
+    "bmonth": "July",
+    "byear": "1982",
+    "new_group": "contact_groupe"
+  }
+]

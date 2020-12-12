@@ -8,11 +8,12 @@
     <address>adddresss0</address>
     <home>1230</home>
     <mobile>12540</mobile>
-    <work>657890</work>
+    <work>666660</work>
     <email>test0@test.ru</email>
     <bday>7</bday>
     <bmonth>July</bmonth>
     <byear>1982</byear>
+    <groups/>
     <new__group>contact_groupe</new__group>
   </contact>
   <contact>
@@ -24,11 +25,12 @@
     <address>adddresss1</address>
     <home>1231</home>
     <mobile>12541</mobile>
-    <work>657891</work>
+    <work>666661</work>
     <email>test1@test.ru</email>
     <bday>7</bday>
     <bmonth>July</bmonth>
     <byear>1982</byear>
+    <groups/>
     <new__group>contact_groupe</new__group>
   </contact>
 </list>

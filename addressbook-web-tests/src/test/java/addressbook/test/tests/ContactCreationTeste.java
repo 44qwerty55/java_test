@@ -39,7 +39,7 @@ public class ContactCreationTeste extends TestBase {
       list.add(new Object[] {new AddContact().withFirstname(split[0]).withLastname(split[1]).withMiddlename(split[2])
               .withCompany(split[3]).withHome(split[4]).withMobile(split[5]).withWork(split[6])
               .withEmail(split[7]).withBday(split[8]).withBmonth(split[9])
-              .withByear(split[10]).withGroup(split[11])});
+              .withByear(split[10])});
       line = reader.readLine();
 
     }
@@ -125,13 +125,13 @@ public class ContactCreationTeste extends TestBase {
 
 
 
-  @Test(dataProvider = "validFromXml")
+  @Test(dataProvider = "validFromXml" ,enabled = true )
   public void contactCreationTesteWithFile(AddContact contact) throws Exception {
-
+   // Groups beforeGroups = app.db().groups();
     Contacts before = app.db().contacts();
     app.goTo().gotoAddContactPage();
 
-    app.contacts().createContact(contact, true);
+    app.contacts().createContact(contact, true ,false);
       app.goTo().returnToHomePage();
     Contacts after = app.db().contacts();
     assertThat(after.size(), equalTo(before.size() + 1));
@@ -143,7 +143,7 @@ public class ContactCreationTeste extends TestBase {
   // получение списка контактов из веб для работы надо перегенерить метод сравнения в GropeData  equals и hashCode на те значения которые отображаються в веб интерфейсе
   @Test(enabled = false)
   public void contactCreationTeste() throws Exception {
-
+ //   Groups beforeGroups = app.db().groups();
     app.goTo().returnToHomePage();
     Contacts before = app.contacts().all();
     app.goTo().gotoAddContactPage();
@@ -151,8 +151,8 @@ public class ContactCreationTeste extends TestBase {
     AddContact contact = new AddContact().withFirstname("test9").withLastname("test1").withMiddlename("test1")
             .withCompany("test company3").withHome("11").withMobile("22").withWork("333")
             .withEmail("test@test.ru").withBday("8").withBmonth("July")
-            .withByear("1990").withGroup("contact_groupe");
-    app.contacts().addContactForm((contact), true);
+            .withByear("1990");
+    app.contacts().addContactForm((contact), false,true);
     app.contacts().submitNewContact();
     app.goTo().returnToHomePage();
     Contacts after = app.contacts().all();
