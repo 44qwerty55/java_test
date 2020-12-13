@@ -36,6 +36,17 @@ public Groups groups() {
   // используем конструктор из public class Groups
   return new Groups(result);
 }
+
+
+ public GropeData groupId(int id) {
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    List<GropeData> result = session.createQuery(String.format("from GropeData where group_id=%s", id)).list();
+    session.getTransaction().commit();
+    session.close();
+    return new Groups(result).iterator().next();
+  }
+
   public Contacts contacts() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
@@ -43,6 +54,14 @@ public Groups groups() {
     session.getTransaction().commit();
     session.close();
     return new Contacts(result);
+  }
+  public AddContact contactsId(int id) {
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    List<AddContact> result = session.createQuery(String.format("from AddContact where id=%s", id)).list();
+    session.getTransaction().commit();
+    session.close();
+    return new Contacts(result).iterator().next();
   }
 
 }

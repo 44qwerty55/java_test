@@ -9,8 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -24,7 +23,7 @@ public class AddContacToGroupe extends TestBase{
   @BeforeMethod
   public void ensurePrecondition() {
     // берем название группы из файла конфигурации
-   String groupToAdd = app.properties().getProperty("groupToadd");
+    String groupToAdd = app.properties().getProperty("groupToadd");
     groupe = groupToAdd;
 
     // проверка на наличие группы
@@ -43,55 +42,63 @@ public class AddContacToGroupe extends TestBase{
     }
 
 
-
-    // проверка на наличие контакта
-    if (app.db().contacts().size() == 0)
-    {
+    // проверка на то что есть контакт не  привязанный не к одной  группе
+    Contacts conactsWithGroupe = app.db().contacts();
+    Set<AddContact> contactList = new HashSet<>();
+    for (AddContact con : conactsWithGroupe) {
+      if (con.getGroups().size() == 0){
+       contactList.add(con);}
+    }
+    // если таких нет создаем контакт
+    if (contactList.isEmpty()) {
       app.goTo().gotoAddContactPage();
-      app.contacts().addContactFormFIO(new AddContact().withFirstname("test9").withLastname("test1"));
+      app.contacts().addContactFormFIO(new AddContact().withFirstname("testqqq").withLastname("testqqq"));
       app.contacts().submitNewContact();
     }
-    // проверка на то что есть контакты не привязанные к группе
-   // else
-   //   {       }
-
 
   }
+
+
+
 
 
 
   @Test(enabled = true)
   public void addContactToGroupe() throws Exception {
-    Contacts findIdContact = app.db().contacts();
+    // выбираем группу в соответсвии с названием из конфига
+    Groups groupeTest = app.db().groups();
+    Set<GropeData> groupeTestList = new HashSet<>();
+        for (GropeData group : groupeTest) {
+          if (group.getName().equals(groupe)) {
+            groupeTestList.add(group);
+          }}
 
-    Groups groupsBefore = app.db().groups();
-  //  logger.info("groops   " + groups );
-    List<GropeData> gropesBef = new ArrayList<>();
-    for (GropeData gr: groupsBefore) {
-      if (gr.getName().equals(groupe)) {
-        gropesBef.add(gr);
-      }
+          GropeData groupQ = groupeTestList.iterator().next();
+    // проверяем сколько контактов к ней привязанно
+          Contacts beforeContacts = groupQ.getContacts();
+    // пвыбираем контакты не привязанные к группе
+    Contacts conactsWithGroupe = app.db().contacts();
+    Set<AddContact> contactList = new HashSet<>();
+    for (AddContact con : conactsWithGroupe) {
+      if (con.getGroups().size() == 0){
+        contactList.add(con);}
     }
-    logger.info("нужная группа  " + gropesBef);
-    GropeData groupBefore = gropesBef.iterator().next();
-   // logger.info("нужная группа 2 " + groupQ.getId());
-    Contacts contactsBefore = groupBefore.getContacts();
-    logger.info("список контактов до    " + contactsBefore);
+          AddContact contact = contactList.iterator().next();
+    // проверяем сколько групп было привязанно к контакту
+          Groups beforeGroups = contact.getGroups();
+
+// добавляем контакт в группу
+          app.goTo().gotoContactPage();
+          app.contacts().selectContactById(contact.getId());
+          app.contacts().addContactTo(groupe);
+          app.contacts().submitAddToGroupeContact();
+// данные после добавления ипроверки на размер
+          Contacts afterContacts = app.db().groupId(groupQ.getId()).getContacts();
+          Groups afterGroups = app.db().contactsId(contact.getId()).getGroups();
+
+          assertThat(afterContacts.size(), equalTo(beforeContacts.size() + 1));
+          assertThat(afterGroups.size(), equalTo(beforeGroups.size() + 1));
+
+        }}
 
 
-
-     app.goTo().gotoContactPage();
-    AddContact addContactToGroupe = findIdContact.iterator().next();
-    app.contacts().selectContactById(addContactToGroupe.getId());
-    app.contacts().addContactTo(groupe);
-    app.contacts().submitAddToGroupeContact();
-
-
-
-
-
-   // assertThat(after, equalTo(findIdContact.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
-  }
-
-
-}

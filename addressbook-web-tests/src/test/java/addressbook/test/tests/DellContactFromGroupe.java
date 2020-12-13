@@ -107,12 +107,19 @@ public class DellContactFromGroupe extends TestBase{
       }
     }
     GropeData groupQ = gropes.iterator().next();
+    Contacts beforeContacts = groupQ.getContacts();
     AddContact contact = groupQ.getContacts().iterator().next();
+    Groups beforeGroups = contact.getGroups();
     // выбираем
     app.contacts().selectContactById(contact.getId());
     app.contacts().dellContactFrom();
     app.goTo().gotoContactPage();
     app.contacts().choseGroupe("[all]");
+    // данные после удаления ип роверки на размер
+    Contacts afterContacts = app.db().groupId(groupQ.getId()).getContacts();
+    Groups afterGroups = app.db().contactsId(contact.getId()).getGroups();
+    assertThat(afterContacts.size(), equalTo(beforeContacts.size() - 1));
+    assertThat(afterGroups.size(), equalTo(beforeGroups.size() - 1));
 
   }
 
