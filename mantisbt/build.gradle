@@ -1,0 +1,23 @@
+
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.testng:testng:6.9.13.6'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.0.0-alpha-6'
+    implementation 'org.hamcrest:java-hamcrest:2.0.0.0'
+
+}
+test {    useTestNG {suites 'src/test/resourses/testng.xml' }
+    if (project.hasProperty('browser')){
+        systemProperty 'browser' , "${browser}"}
+    if (project.hasProperty('target')){
+        systemProperty 'target' , "${target}"}
+    if (project.hasProperty('verifyUI')){
+        systemProperty 'verifyUI' , "${verifyUI}"}
+}
