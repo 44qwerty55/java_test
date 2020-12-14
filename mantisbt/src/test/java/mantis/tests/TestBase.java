@@ -6,9 +6,6 @@ import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
-import java.util.stream.Collectors;
-
-import static org.hamcrest.CoreMatchers.equalTo;
 
 
 public class TestBase {

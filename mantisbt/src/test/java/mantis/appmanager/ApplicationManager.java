@@ -1,8 +1,6 @@
 package mantis.appmanager;
 
 
-//import org.openqa.selenium.By;
-//import org.openqa.selenium.NoSuchElementException;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,7 +14,6 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-//import sun.plugin2.util.BrowserType;
 
 public class ApplicationManager {
   WebDriver wd;
