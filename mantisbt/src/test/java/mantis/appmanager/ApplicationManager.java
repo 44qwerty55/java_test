@@ -55,6 +55,14 @@ public class ApplicationManager {
     wd.quit();
   }
 
+  public HttpSession newSession() {
+    return new  HttpSession(this);
+  }
+
+  public String getProperty(String key) {
+   return properties.getProperty(key);
+  }
+
 
   // выносим возможность читать файл конфига в тестах
   public Properties properties(){
