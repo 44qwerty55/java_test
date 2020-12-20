@@ -13,7 +13,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
-import java.util.regex.MatchResult;
 
 
 public class ApplicationManager {
@@ -23,6 +22,7 @@ public class ApplicationManager {
   private RegistrationHelper registrationHelper;
   private FtpHelper ftp;
   private MailHelper mailHelper;
+  private JamesHelper jamesHelper;
 
 
   public ApplicationManager(String browser) {
@@ -85,6 +85,13 @@ public FtpHelper ftp() {
       mailHelper = new MailHelper(this);
     }
     return mailHelper;
+  }
+  // инициализация для JamesHelper
+  public JamesHelper  james() {
+    if (jamesHelper == null) {
+      jamesHelper = new JamesHelper(this);
+    }
+    return jamesHelper;
   }
 
 
