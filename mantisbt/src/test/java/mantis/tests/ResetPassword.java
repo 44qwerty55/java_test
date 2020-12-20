@@ -22,10 +22,11 @@ public class ResetPassword extends TestBase{
 
 String admin = app.getProperty("web.adminLogin");
 String pass = app.getProperty("web.adminPassword");
-String user = "user1608490390230";
+String user = "user1608491139127";
     String passwordUsr  = "password";
-    String email = "user1608490390230@localhost";
-    app.james().drainEmail(user ,email);
+    String email = "user1608491139127@localhost";
+
+app.james().drainEmail(user ,email);
 app.registration().login(admin,pass);
 app.registration().resetPassword(user);
 // получаем письма

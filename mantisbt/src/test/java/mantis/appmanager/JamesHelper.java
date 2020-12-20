@@ -139,6 +139,9 @@ public class JamesHelper {
     store.close();
   }
 
+
+
+
   private Folder openInbox(String username, String password) throws MessagingException {
     store = mailSession.getStore("pop3");
     mailserver = app.getProperty("mailserver.host");
