@@ -34,4 +34,23 @@ public class RegistrationHelper extends HelperBase{
    // click(By.xpath("//input[@value='Signup']"));
     //click(By.cssSelector(".btn-success"));
   }
+
+
+
+  public void resetPassword(String user){
+   click(By.xpath("//div[@id='sidebar']/ul/li[6]/a/i"));
+    click(By.linkText("Manage Users"));
+    click(By.linkText(user));
+    click(By.xpath("//input[@value='Reset Password']"));
+  }
+
+  public void login (String username, String password)
+  {
+    wd.get(app.getProperty("web.baseUrl") + "/login_page.php");
+    type(By.id("username"), username);
+    click(By.xpath("//input[@value='Login']"));
+    type(By.id("password"), password);
+    click(By.xpath("//input[@value='Login']"));
+  }
+
 }

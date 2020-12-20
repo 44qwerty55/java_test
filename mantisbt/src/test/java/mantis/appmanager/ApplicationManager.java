@@ -98,6 +98,7 @@ public FtpHelper ftp() {
 
 // вовзращаем браузер при непосредственном его указание (RegistrationHelper)
   public WebDriver getDriver() {
+    String browser = BrowserType.FIREFOX;
     // ининциализация драйвера, если он еще не проинициализирован
     if (wd == null){
       if (browser.equals(BrowserType.FIREFOX)) {

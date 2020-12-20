@@ -76,6 +76,7 @@ assertTrue (app.newSession().login(user,password));
     List<MailMessage> mailMessages =   app.james().waitForMail(user ,email, 60000);
 // поиск ссылки из письма
     String confirmationLink = findConfirmationLink(mailMessages, email);
+    System.out.println(confirmationLink);
     app.registration().finish(confirmationLink , password);
 // проверка что пользователь входит в систему
     assertTrue (app.newSession().login(user,password));

@@ -141,6 +141,7 @@ public class JamesHelper {
 
   private Folder openInbox(String username, String password) throws MessagingException {
     store = mailSession.getStore("pop3");
+    mailserver = app.getProperty("mailserver.host");
     store.connect(mailserver, username, password);
     Folder folder = store.getDefaultFolder().getFolder("INBOX");
     folder.open(Folder.READ_ONLY);
