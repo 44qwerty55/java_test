@@ -23,6 +23,7 @@ public class ApplicationManager {
   private FtpHelper ftp;
   private MailHelper mailHelper;
   private JamesHelper jamesHelper;
+  private DbHelper dbHelper;
 
 
   public ApplicationManager(String browser) {
@@ -93,12 +94,19 @@ public FtpHelper ftp() {
     }
     return jamesHelper;
   }
+  // инициализация для DB
+  public DbHelper  db() {
+    if (dbHelper == null) {
+      dbHelper = new DbHelper(this);
+    }
+    return dbHelper;
+  }
 
 
 
 // вовзращаем браузер при непосредственном его указание (RegistrationHelper)
   public WebDriver getDriver() {
-    String browser = BrowserType.FIREFOX;
+   // String browser = BrowserType.FIREFOX;
     // ининциализация драйвера, если он еще не проинициализирован
     if (wd == null){
       if (browser.equals(BrowserType.FIREFOX)) {

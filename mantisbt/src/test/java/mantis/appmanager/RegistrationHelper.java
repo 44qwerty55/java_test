@@ -1,7 +1,10 @@
 package mantis.appmanager;
 
+import mantis.model.User;
+import mantis.model.Users;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+
+import java.io.Serializable;
 
 public class RegistrationHelper extends HelperBase{
  // private final ApplicationManager app;
@@ -34,6 +37,7 @@ public class RegistrationHelper extends HelperBase{
    // click(By.xpath("//input[@value='Signup']"));
     //click(By.cssSelector(".btn-success"));
   }
+
 
 
 

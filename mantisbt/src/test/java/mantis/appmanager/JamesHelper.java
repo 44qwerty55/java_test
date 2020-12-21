@@ -147,7 +147,7 @@ public class JamesHelper {
     mailserver = app.getProperty("mailserver.host");
     store.connect(mailserver, username, password);
     Folder folder = store.getDefaultFolder().getFolder("INBOX");
-    folder.open(Folder.READ_ONLY);
+    folder.open(Folder.READ_WRITE);
     return folder;
   }
 
