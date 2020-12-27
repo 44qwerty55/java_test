@@ -24,6 +24,7 @@ public class ApplicationManager {
   private MailHelper mailHelper;
   private JamesHelper jamesHelper;
   private DbHelper dbHelper;
+  private SoapHelper soapHelper;
 
 
   public ApplicationManager(String browser) {
@@ -100,6 +101,14 @@ public FtpHelper ftp() {
       dbHelper = new DbHelper(this);
     }
     return dbHelper;
+  }
+
+  // инициализация для soap
+  public SoapHelper  soap() {
+    if (soapHelper == null) {
+      soapHelper = new SoapHelper(this);
+    }
+    return soapHelper;
   }
 
 
