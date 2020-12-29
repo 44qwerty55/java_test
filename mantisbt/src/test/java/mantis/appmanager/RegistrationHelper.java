@@ -42,6 +42,8 @@ public class RegistrationHelper extends HelperBase{
 
 
   public void resetPassword(String user){
+
+  // click(By.xpath("//div[@id='sidebar']/ul/li[7]/a/span"));
    click(By.xpath("//div[@id='sidebar']/ul/li[6]/a/i"));
     click(By.linkText("Manage Users"));
     click(By.linkText(user));

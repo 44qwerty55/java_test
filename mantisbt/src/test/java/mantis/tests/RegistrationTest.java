@@ -61,7 +61,7 @@ assertTrue (app.newSession().login(user,password));
 
 
   @Test
-  public void  testRegistration() throws IOException, MessagingException, ServiceException, com.google.protobuf.ServiceException {
+  public void  testRegistrationSoap() throws IOException, MessagingException, ServiceException, com.google.protobuf.ServiceException {
   // проверка баг репортера
 
     skipIfNotFixed(app.soap().issueId());
@@ -86,6 +86,35 @@ assertTrue (app.newSession().login(user,password));
 // проверка что пользователь входит в систему
     assertTrue (app.newSession().login(user,password));
   }
+
+  @Test
+  public void  testRegistrationRest() throws IOException, MessagingException, ServiceException {
+
+    // проверка на баги  bugify
+     skipIfNotFixedBugify(app.rest().getIssueId());
+
+
+
+    // создание уникальных идентификаторов currentTimeMillis - возвращает текущее время
+    long now = System.currentTimeMillis();
+    String email = String.format("user%s@localhost", now);
+
+    String user = "user" + now;
+    String password = "password";
+    // создаем пользователя на почтовом сервере
+    app.james().createUser(user ,email);
+    // непосредственное обращение к браузеру registration()
+    app.registration().start(user ,email);
+// получаем письма
+    List<MailMessage> mailMessages =   app.james().waitForMail(user ,email, 60000);
+// поиск ссылки из письма
+    String confirmationLink = findConfirmationLink(mailMessages, email);
+    System.out.println(confirmationLink);
+    app.registration().finish(confirmationLink , password);
+// проверка что пользователь входит в систему
+    assertTrue (app.newSession().login(user,password));
+  }
+
 
   private String findConfirmationLink(List<MailMessage> mailMessages, String email) {
     // ищем текст письма

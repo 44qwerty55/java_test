@@ -25,6 +25,7 @@ public class ApplicationManager {
   private JamesHelper jamesHelper;
   private DbHelper dbHelper;
   private SoapHelper soapHelper;
+  private RestHelper restHelper;
 
 
   public ApplicationManager(String browser) {
@@ -109,6 +110,13 @@ public FtpHelper ftp() {
       soapHelper = new SoapHelper(this);
     }
     return soapHelper;
+  }
+  // инициализация для rest
+  public RestHelper  rest() {
+    if (restHelper == null) {
+      restHelper = new RestHelper(this);
+    }
+    return restHelper;
   }
 
 

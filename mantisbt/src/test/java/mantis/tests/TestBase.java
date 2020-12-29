@@ -35,6 +35,20 @@ public class TestBase {
     }
   }
 
+
+  public void skipIfNotFixedBugify(int issueId) throws IOException, ServiceException {
+    if (isIssueOpenBugify(issueId)) {
+      throw new SkipException("Ignored because of issue " + issueId);
+    }
+  }
+
+  public boolean isIssueOpenBugify(int issueId) throws IOException, ServiceException {
+    if (app.rest().getIssueStatus(issueId) != 2) {
+      return true;
+    }
+    return false;
+  }
+
   @AfterSuite(alwaysRun = true)
   public void tearDown() throws Exception {
     app.ftp().restore("config_inc.php.bak" ,"config_inc.php");

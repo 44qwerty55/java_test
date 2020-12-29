@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import ru.lanwen.verbalregex.VerbalExpression;
 
 import javax.mail.MessagingException;
+import javax.xml.rpc.ServiceException;
 import java.io.IOException;
 import java.util.List;
 
@@ -19,7 +20,9 @@ public class ResetPassword extends TestBase{
 
 
   @BeforeMethod
-  public void ensurePrecondition() throws MessagingException, IOException {
+  public void ensurePrecondition() throws MessagingException, IOException, ServiceException {
+
+
     // проверка что пользователей больше чем 1 , тогда создаем пользователя
     if(app.db().users().size() <= 1)
     { long now = System.currentTimeMillis();
