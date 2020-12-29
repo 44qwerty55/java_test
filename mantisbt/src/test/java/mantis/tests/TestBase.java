@@ -3,10 +3,12 @@ package mantis.tests;
 
 import mantis.appmanager.ApplicationManager;
 import org.openqa.selenium.remote.BrowserType;
+import org.testng.SkipException;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-
+import javax.xml.rpc.ServiceException;
 import java.io.File;
+import java.io.IOException;
 
 
 public class TestBase {
@@ -20,6 +22,18 @@ public class TestBase {
     app.init();
     app.ftp().upload(new File("src\\test\\resources\\config_inc.php"), "config_inc.php" ,"config_inc.php.bak");
   }
+  public boolean isIssueOpen(int issueId) throws IOException, ServiceException {
+    if (app.soap().issueStatus(issueId) != 80) {
+      return true;
+    }
+    return false;
+  }
+
+  public void skipIfNotFixed(int issueId) throws IOException, ServiceException{
+    if (isIssueOpen(issueId)) {
+      throw new SkipException("Ignored because of issue " + issueId);
+    }
+  }
 
   @AfterSuite(alwaysRun = true)
   public void tearDown() throws Exception {
@@ -27,5 +41,6 @@ public class TestBase {
     app.stop();
 
   }
+
 
 }

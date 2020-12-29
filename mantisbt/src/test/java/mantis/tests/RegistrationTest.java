@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import ru.lanwen.verbalregex.VerbalExpression;
 
 import javax.mail.MessagingException;
+import javax.xml.rpc.ServiceException;
 import java.io.IOException;
 import java.util.List;
 
@@ -60,7 +61,11 @@ assertTrue (app.newSession().login(user,password));
 
 
   @Test
-  public void  testRegistration() throws IOException, MessagingException {
+  public void  testRegistration() throws IOException, MessagingException, ServiceException, com.google.protobuf.ServiceException {
+  // проверка баг репортера
+
+    skipIfNotFixed(app.soap().issueId());
+
 
     // создание уникальных идентификаторов currentTimeMillis - возвращает текущее время
     long now = System.currentTimeMillis();
